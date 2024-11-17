@@ -1,23 +1,33 @@
 #include <QApplication>
 #include <QGraphicsView>
 #include <QGraphicsScene>
-#include <QGraphicsRectItem>
-#include <Qpen>
-#include "score.h"
+#include "player.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QGraphicsScene * scene = new QGraphicsScene();
-    QGraphicsRectItem * rect = new QGraphicsRectItem();
-    rect->setRect(0, 0, 800, 600);
-    QPen RedPen(Qt::red);
-    rect->setPen(RedPen);
-    scene->addItem(rect);
-    QGraphicsView * view = new QGraphicsView(scene);
-    view->setFixedSize(800, 600);
-    Score *score = new Score();
-    scene->addItem(score);
-    score->setPos(20, 20);
-    view->show();
+    // Create a scene
+    QGraphicsScene *scene = new QGraphicsScene();
+    player *player1 = new player();
+    player1->setPos(10, 10); // Set initial position of the player in the scene
+    scene->addItem(player1);  //
+
+    // Create a view to visualize the scene
+    QGraphicsView *view = new QGraphicsView(scene);
+    view->setFixedSize(800, 600);        // Set fixed size for the view
+    scene->setSceneRect(0, 0, 800, 600); // Set the scene boundaries
+    // Enable keyboard focus on the player
+    player1->setFlag(QGraphicsItem::ItemIsFocusable);
+   //player1->setFocus();
+    // Show the view
+            view->show();
+//    player w;
+//    w.show();
     return a.exec();
 }
+
+
+
+
+
+
