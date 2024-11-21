@@ -34,21 +34,27 @@ private:
 
 
   The main function for the coins
-QList<Coin *> coins;
-    for (int i = 0; i < 10; i++) {
-        Coin *coin = new Coin(scene, scoreDisplay, score);
-        coin->setPos(i * 100 + 100, 300);
-        coins.append(coin);
-    }
+Score score;
+QGraphicsTextItem *scoreDisplay = new QGraphicsTextItem("Score: 0");
+scene->addItem(scoreDisplay);
+scoreDisplay->setPos(10, 10);
 
-   QTimer *timer = new QTimer();
-    QObject::connect(timer, &QTimer::timeout, [=]() {
-        for (Coin *coin : coins) {
-            if (coin) {
-                coin->checkCollisionWithPlayer(player);
-            }
+QList<Coin *> coins;
+for (int i = 0; i < 10; i++) {
+    Coin *coin = new Coin(scene, scoreDisplay, score);
+    coin->setPos(i * 100 + 100, 300);
+    coins.append(coin);
+}
+
+QTimer *timer = new QTimer();
+QObject::connect(timer, &QTimer::timeout, [=]() {
+    for (Coin *coin : coins) {
+        if (coin) {
+            coin->checkCollisionWithPlayer(player);
         }
-    });
-    timer->start(50);
+    }
+});
+timer->start(50);
+
 
 
