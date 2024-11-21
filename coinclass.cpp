@@ -16,14 +16,14 @@ public:
 private:
     QGraphicsScene *scene;
     QGraphicsTextItem *scoreDisplay;
-    int &score;
+    Score &score;
 
       void collectCoin() {
         scene->removeItem(this);
         delete this;
 
      
-        score += 10;
+        score.increasescore();
         scoreDisplay->setPlainText(QString("Score: %1").arg(score));
     }
 };
