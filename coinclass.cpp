@@ -33,12 +33,7 @@ private:
 
 
 
-  The main function for the coins
-Score score;
-QGraphicsTextItem *scoreDisplay = new QGraphicsTextItem("Score: 0");
-scene->addItem(scoreDisplay);
-scoreDisplay->setPos(10, 10);
-
+  //The main function for the coins
 QList<Coin *> coins;
 for (int i = 0; i < 10; i++) {
     Coin *coin = new Coin(scene, scoreDisplay, score);
