@@ -1,3 +1,8 @@
+#include <QGraphicsPixmapItem>
+#include <QGraphicsScene>
+#include <QGraphicsTextItem>
+#include "score.h"   
+#include "player.h"  
 #include "Coin.h"
 
 Coin::Coin(QGraphicsScene *scene, QGraphicsTextItem *scoreDisplay, int &score)
