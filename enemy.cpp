@@ -8,10 +8,10 @@
 Enemy::Enemy(QGraphicsScene *scene, ObstacleType type, Score *score, int speed)
     : scene(scene), type(type), score(score), speed(speed) {
 
-    setPixmap(QPixmap("EnemyImage Link"));
+    setPixmap(QPixmap("C:\Users\AUC\Downloads\enemy_mario"));
     scene->addItem(this);
 
-    setPos(800, 300);  /
+    setPos(800, 300);
 
         if (type == Moving) {
         QTimer *timer = new QTimer(this);
