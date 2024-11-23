@@ -5,8 +5,8 @@
 #include <QGraphicsScene>
 #include <QTimer>
 #include <QObject>
-#include "Score.h" 
-#include "player.h" 
+#include "Score.h"
+#include "player.h"
 
 class Enemy : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
@@ -23,8 +23,8 @@ private:
     Score *score;
 
 private slots:
-    void move(); 
+    void move();
 
 };
 
-#endif 
+#endif

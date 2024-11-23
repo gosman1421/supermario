@@ -17,6 +17,8 @@ SOURCES += \
 
 HEADERS += \
     Score.h \
+    coin.h \
+    enemy.h \
     player.h
 
 # Default rules for deployment.

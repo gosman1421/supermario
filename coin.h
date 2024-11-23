@@ -4,8 +4,8 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include <QGraphicsTextItem>
-#include "score.h"   
-#include "player.h"  
+#include "score.h"
+#include "player.h"
 
 class Coin : public QGraphicsPixmapItem {
 public:
@@ -20,4 +20,5 @@ private:
     void collectCoin();
 };
 
-#endif 
+#endif
+//hello bassel
