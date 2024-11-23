@@ -10,7 +10,9 @@ CONFIG += c++17
 
 SOURCES += \
     Score.cpp \
+    coin.cpp \
     coinclass.cpp \
+    enemy.cpp \
     enemyclass.cpp \
     main.cpp \
     player.cpp

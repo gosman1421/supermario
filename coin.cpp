@@ -1,14 +1,14 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
 #include <QGraphicsTextItem>
-#include "score.h"   
-#include "player.h"  
+#include "score.h"
+#include "player.h"
 #include "Coin.h"
 
 Coin::Coin(QGraphicsScene *scene, QGraphicsTextItem *scoreDisplay, int &score)
     : scene(scene), scoreDisplay(scoreDisplay), score(score) {
-    setPixmap(QPixmap("C:\Users\AUC\Downloads\mario_coin.jpg"));  
-    scene->addItem(this); 
+    setPixmap(QPixmap("C:\Users\AUC\Downloads\mario_coin.jpg"));
+    scene->addItem(this);
 }
 
 void Coin::checkCollisionWithPlayer(QGraphicsPixmapItem *player) {
@@ -26,7 +26,7 @@ void Coin::collectCoin() {
 }
 
 
-  //The main function for the coins
+//The main function for the coins
 QList<Coin *> coins;
 for (int i = 0; i < 10; i++) {
     Coin *coin = new Coin(scene, scoreDisplay, score);
@@ -43,6 +43,5 @@ QObject::connect(timer, &QTimer::timeout, [=]() {
     }
 });
 timer->start(50);
-
 
 
