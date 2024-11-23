@@ -7,7 +7,7 @@
 
 Coin::Coin(QGraphicsScene *scene, QGraphicsTextItem *scoreDisplay, int &score)
     : scene(scene), scoreDisplay(scoreDisplay), score(score) {
-    setPixmap(QPixmap("Image Link"));  
+    setPixmap(QPixmap("C:\Users\AUC\Downloads\mario_coin.jpg"));  
     scene->addItem(this); 
 }
 
