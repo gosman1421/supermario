@@ -12,9 +12,7 @@ SOURCES += \
     Health.cpp \
     Score.cpp \
     coin.cpp \
-    coinclass.cpp \
     enemy.cpp \
-    enemyclass.cpp \
     game.cpp \
     main.cpp \
     player.cpp

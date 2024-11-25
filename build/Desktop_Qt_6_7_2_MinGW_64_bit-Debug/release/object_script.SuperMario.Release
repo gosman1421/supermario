@@ -1,9 +1,7 @@
 release/Health.o
 release/Score.o
 release/coin.o
-release/coinclass.o
 release/enemy.o
-release/enemyclass.o
 release/game.o
 release/main.o
 release/player.o

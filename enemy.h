@@ -14,13 +14,13 @@ public:
     enum ObstacleType { Static, Moving };
 
 
-    Enemy(QGraphicsScene *scene, ObstacleType type, Score *score, int speed = 0);
+    Enemy(QGraphicsScene *scene, ObstacleType type, Score *setscore, int speed = 0);
 
 private:
     QGraphicsScene *scene;
     ObstacleType type;
     int speed;
-    Score *score;
+    Score * setscore;
 
 private slots:
     void move();

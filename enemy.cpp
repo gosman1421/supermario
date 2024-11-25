@@ -4,11 +4,11 @@
 #include <QObject>
 #include "Score.h"
 #include "player.h"
-#include "Enemy.h"
-Enemy::Enemy(QGraphicsScene *scene, ObstacleType type, Score *score, int speed)
-    : scene(scene), type(type), score(score), speed(speed) {
+#include "enemy.h"
+Enemy::Enemy(QGraphicsScene *scene, ObstacleType type, Score *newscore, int speed)
+    : scene(scene), type(type), setscore(newscore), speed(speed) {
 
-    setPixmap(QPixmap("C:\Users\AUC\Downloads\enemy_mario"));
+    setPixmap(QPixmap("C://Users//AUC//Downloads//enemy_mario"));
     scene->addItem(this);
 
     setPos(800, 300);
@@ -26,7 +26,7 @@ void Enemy::move() {
 
         for (QGraphicsItem *item : collidingItems()) {
             if (item->type() == QGraphicsPixmapItem::Type) {
-                score->decrementScore();
+                setscore->decrementscore();
                 scene->removeItem(this);
                 delete this;
                 return;
