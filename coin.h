@@ -7,17 +7,15 @@
 #include "score.h"
 #include "player.h"
 
-class Coin : public QGraphicsPixmapItem {
+class coin : public QGraphicsPixmapItem {
 public:
-    Coin(QGraphicsScene *scene, QGraphicsTextItem *scoreDisplay, int &score);
-    void checkCollisionWithPlayer(QGraphicsPixmapItem *player);
+    coin(QGraphicsScene *scene, Score *scoreManager);
 
+    void checkCollisionWithPlayer(player *mainplayer);
+    void collectCoin();
 private:
     QGraphicsScene *scene;
-    QGraphicsTextItem *scoreDisplay;
-    Score &score;
-
-    void collectCoin();
+    Score *scoreManager;
 };
 
 #endif

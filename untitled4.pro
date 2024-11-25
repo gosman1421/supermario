@@ -9,24 +9,17 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Health.cpp \
-    Score.cpp \
-    coin.cpp \
-    coinclass.cpp \
-    enemy.cpp \
-    enemyclass.cpp \
     game.cpp \
-    main.cpp \
-    player.cpp
+    health.cpp \
+    main.cpp
 
 HEADERS += \
     GameLevel.h \
-    Health.h \
-    Score.h \
-    coin.h \
-    enemy.h \
     game.h \
-    player.h
+    health.h
+
+FORMS += \
+    health.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
