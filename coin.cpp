@@ -63,5 +63,3 @@ void coin::collectCoin() {
 
     scoreManager->increasescore();
 }
-
-

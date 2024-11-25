@@ -16,7 +16,6 @@ int main(int argc, char *argv[]) {
     QGraphicsView * view = new QGraphicsView(scene);
     view->setFixedSize(800, 600);
     player* player1 = new player();
-
     player1->setFlag(QGraphicsItem::ItemIsFocusable);
 
     player1->setPos(view->width()/2,view->height()-player1->rect().height());

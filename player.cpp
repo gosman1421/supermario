@@ -10,10 +10,10 @@
 
 player::player( QGraphicsItem* parent)
     : QGraphicsPixmapItem(parent), score(0), lives(3), coins(0), hasTemporaryAbility(false) {
-    // Set the player's image (can be a sprite or a placeholder)
-    setPixmap(QPixmap("/Users/ghadasherif/Desktop/CS2/Assignment 6/cs2 assignment 4/cs2 assignment 4/player.png"));
+    // Set the player's image ("/Users/ghadasherif/Desktop/CS2/Assignment 6/cs2 assignment 4/cs2 assignment 4/player.png")
+    setPixmap(QPixmap("C:/Users/AUC/Downloads/png-clipart-mario-mario.png"));
 }
-
+//"/Users/ghadasherif/Desktop/CS2/Assignment 6/cs2 assignment 4/cs2 assignment 4/player.png"
 // Getters
 int player::getScore() const { return score; }
 int player::getLives() const { return lives; }
@@ -30,7 +30,7 @@ void player::addScore(int points) {
     score += points;
     emit scoreChanged(score);
 }
-
+//
 void player::addCoin() {
     coins += 1;
     emit coinsChanged(coins);
