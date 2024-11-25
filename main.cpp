@@ -21,9 +21,6 @@ int main(int argc, char *argv[]) {
     player1->setPos(view->width()/2,view->height()-player1->rect().height());
 
     scene->addItem(player1);
-
-
-
     view->setScene(scene);
     view->show();
     return app.exec();

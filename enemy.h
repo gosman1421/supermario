@@ -6,7 +6,6 @@
 #include <QTimer>
 #include <QObject>
 #include "Score.h"
-#include "player.h"
 
 class Enemy : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT

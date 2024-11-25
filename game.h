@@ -1,6 +1,5 @@
 #ifndef GAME_H
 #define GAME_H \
-    //I LOVE CHICKEN SHAWERMA
 #include <QObject>
 #include <QGraphicsScene>
 #include <QGraphicsView>
