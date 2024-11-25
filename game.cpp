@@ -1,7 +1,8 @@
 #include "Game.h"
 #include <QKeyEvent>
 #include <QDebug>
-
+#include "coin.h"
+#include "enemy.h"
 
 
 
@@ -9,9 +10,12 @@ Game::Game()
     : score(0),currentLevel(1){
     scene=new QGraphicsScene();
     view=new QGraphicsView(scene);
+    view->setFixedSize(800, 600);
     gameTimer=new QTimer(this);
     health=new Health(100, 3);
-
+    score = new Score();
+    scene->addItem(score);
+    score->setPos(0, 0);
     connect(gameTimer, &QTimer::timeout,this,&Game::updateGame);
 
     initGame();

@@ -7,8 +7,6 @@ Score::Score(QGraphicsItem * parent):QGraphicsTextItem(parent)
     setPlainText(QString("Score: ") + QString::number(score));
     setDefaultTextColor(Qt::yellow);
     setFont(QFont("Times",16));
-    //QGraphicsScene * scene = new QGraphicsScene();
-    //scene->addItem(score);
 }
 
 void Score::increasescore()
