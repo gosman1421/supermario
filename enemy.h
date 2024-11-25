@@ -24,7 +24,6 @@ private:
 
 private slots:
     void move();
-
 };
 
 #endif

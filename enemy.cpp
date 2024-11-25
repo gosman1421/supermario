@@ -8,7 +8,7 @@
 Enemy::Enemy(QGraphicsScene *scene, ObstacleType type, Score *newscore, int speed)
     : scene(scene), type(type), setscore(newscore), speed(speed) {
 
-    setPixmap(QPixmap("C://Users//AUC//Downloads//enemy_mario"));
+    setPixmap(QPixmap("C:/Users/AUC/Downloads/enemy_mario.png"));
     scene->addItem(this);
 
     setPos(800, 300);
