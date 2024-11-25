@@ -1,6 +1,6 @@
 #ifndef GAMELEVEL_H
-#define GAMELEVEL_H
-                    // Just a placeholder/temporary .h file made by gpt
+#define GAMELEVEL_H \
+    // Just a placeholder/temporary .h file made by gpt
 #include <QObject>
 #include <QString>
 
