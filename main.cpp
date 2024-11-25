@@ -23,5 +23,10 @@ int main(int argc, char *argv[]) {
     scene->addItem(player1);
     view->setScene(scene);
     view->show();
+
+    QTimer * time = new QTimer();
+    QObject::connect(time, SIGNAL(timeout()),player1,SLOT(createenemy()));
+    time->start(2000);
+
     return app.exec();
 }
