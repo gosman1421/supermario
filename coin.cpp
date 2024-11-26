@@ -47,7 +47,8 @@
 
 coin::coin(QGraphicsScene *scene, Score *scoreManager)
     : scene(scene), scoreManager(scoreManager) {
-    setPixmap(QPixmap("C:/Users/AUC/Downloads/mario_coin.jpg"));
+    setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/clipart4500979.png"));
+    setScale(0.05);
     scene->addItem(this);
 }
 
@@ -61,5 +62,5 @@ void coin::collectCoin() {
     scene->removeItem(this);
     delete this;
 
-    scoreManager->increasescore();
+    //scoreManager->increasescore();
 }

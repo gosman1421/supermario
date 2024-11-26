@@ -2,10 +2,15 @@
 #define PLAYER_H
 
 #include <QMainWindow>
-#include <QGraphicsPixmapItem>
-#include <QObject>
+// #include <QGraphicsPixmapItem>
+// #include <QObject>
 #include <QKeyEvent>
-
+#include <QGraphicsPixmapItem>
+#include <QGraphicsScene>
+#include <QTimer>
+#include <QObject>
+#include "Score.h"
+#include <QGraphicsItem>
 class player : public QMainWindow, public QGraphicsPixmapItem
 {
     Q_OBJECT
@@ -13,11 +18,12 @@ private:
     int score;              // Current score of the player
     int lives;              // Current lives of the player
     int coins;              // Coins collected by the player
-    bool hasTemporaryAbility; // Flag to indicate if the player has a temporary ability
+    bool hasTemporaryAbility;
+      // Flag to indicate if the player has a temporary ability
 public:
         // player(QWidget *parent = nullptr);
-    explicit player(QGraphicsItem* parent = nullptr);
-
+    player(QGraphicsItem* parent = nullptr, QGraphicsScene *scene1 =nullptr);
+     QGraphicsScene *scene;
     // Getters
     int getScore() const;
     int getLives() const;
@@ -37,6 +43,7 @@ public:
     void reduceLife();
     bool isAlive() const;
 
+    void moveDown();
 protected:
     // Handle keyboard events for player movement
     void keyPressEvent(QKeyEvent* event) override;

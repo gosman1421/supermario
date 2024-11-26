@@ -8,9 +8,9 @@
 Enemy::Enemy(QGraphicsScene *scene, ObstacleType type, Score *newscore, int speed)
     : scene(scene), type(type), setscore(newscore), speed(speed) {
 
-    setPixmap(QPixmap("C:/Users/AUC/Downloads/enemy_mario.png"));
+    setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/PngItem_1478513.png"));
+    setScale(0.1);
     scene->addItem(this);
-
     setPos(800, 300);
 
         if (type == Moving) {
@@ -18,20 +18,21 @@ Enemy::Enemy(QGraphicsScene *scene, ObstacleType type, Score *newscore, int spee
         connect(timer, &QTimer::timeout, this, &Enemy::move);
         timer->start(50);
     }
+        scene->update();
 }
 
 void Enemy::move() {
     if (type == Moving) {
         setPos(x() - speed, y());
 
-        for (QGraphicsItem *item : collidingItems()) {
-            if (item->type() == QGraphicsPixmapItem::Type) {
-                setscore->decrementscore();
-                scene->removeItem(this);
-                delete this;
-                return;
-            }
-        }
+        // for (QGraphicsItem *item : collidingItems()) {
+        //     if (item->type() == QGraphicsPixmapItem::Type) {
+        //         setscore->decrementscore();
+        //         scene->removeItem(this);
+        //         delete this;
+        //         return;
+        //     }
+        // }
 
         if (x() + pixmap().width() < 0) {
             scene->removeItem(this);

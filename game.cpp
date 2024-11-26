@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "game.h"
 #include <QKeyEvent>
 #include <QGraphicsTextItem>
 #include <QDebug>
@@ -8,16 +8,18 @@ Game::Game(): score(0), currentLevel(1) {
     view = new QGraphicsView(scene);
     view->setFixedSize(800, 600);
     view->show();
-    //gameTimer = new QTimer(this);
-    //health = new Health(100, 3);
+
+    gameTimer = new QTimer(this);
+    health = new Health(100, 3);
     scoreManager = new Score();
-    //mainPlayer = new player();
+    mainPlayer = new player();
+    mainPlayer->scene = scene;
     scene->addItem(scoreManager);
     scene->update();
-    //scene->addItem(mainPlayer);
-    //scene->update();
+    scene->addItem(mainPlayer);
+    scene->update();
     //connect(gameTimer, &QTimer::timeout, this, &Game::updateGame);
-    //initGame();
+    initGame();
 }
 
 Game::~Game() {
@@ -39,31 +41,13 @@ void Game::initGame() {
         coins.append(newCoin);
     }
 
-    for (int i = 0; i < 3; i++) { // Add 3 enemies as an example
-        Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 2);
-        newEnemy->setPos(i * 200 + 150, 400); // Position enemies in the scene
-        scene->addItem(newEnemy);            // Add to the scene
-        enemies.append(newEnemy);            // Keep track of enemies
-    }
+    Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 2);
+    enemies.append(newEnemy);
+    scene->update();
 }
 
 void Game::loadLevel(int level) {
-    for (coin* c : coins) {
-        delete c;
-    }
-    coins.clear();
-
-    // Delete enemies
-    for (Enemy* e : enemies) {
-        delete e;
-    }
-    enemies.clear();
-
-    scene->clear();
-
-    scene->addItem(scoreManager);
-    //scene->addItem(health);
-    scene->addItem(mainPlayer);
+    //scene->clear();
     QGraphicsTextItem* levelText = new QGraphicsTextItem(QString("Level %1").arg(level));
     levelText->setPos(10, 10);
     scene->addItem(levelText);
@@ -96,11 +80,11 @@ void Game::nextLevel() {
 }
 
 void Game::checkCollisions() {
-    //for (coin* c : coins) {
-      //  c->checkCollisionWithPlayer(mainPlayer);
-    //}
+    for (coin* c : coins) {
+        c->checkCollisionWithPlayer(mainPlayer);
+    }
     //for (Enemy* e : enemies) {
-      //  e->move();
+    //  e->move();
     //}
 }
 
