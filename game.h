@@ -1,42 +1,50 @@
 #ifndef GAME_H
-#define GAME_H \
+#define GAME_H
 #include <QObject>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QTimer>
 #include <QGraphicsTextItem>
 #include "Health.h"
-//#include "GameLevel.h"
+#include "player.h"
+#include "coin.h"
+#include "enemy.h"
+#include "Score.h"
+#include "GameLevel.h"
 
-class Game:public QObject{
+class Game: public QObject {
     Q_OBJECT
 
 private:
-    QGraphicsScene* scene;
+
     QGraphicsView* view;
-    QTimer*gameTimer;
-    Health*health;
+    QTimer* gameTimer;
+    Health* health;
+    Score* scoreManager;
+    player* mainPlayer;
+    QList<coin*> coins;
+    QList<Enemy*> enemies;
     int score;
     int currentLevel;
 
     void initGame();
-    void loadLevel (int level);
+    void loadLevel(int level);
 
 public:
     Game();
     ~Game();
 
-    void startGame() ;
+    void startGame();
     void pauseGame();
     void restartLevel();
     void gameOver();
-    void nextLevel() ;
-
+    void nextLevel();
     void checkCollisions();
     void updateHUD();
+    QGraphicsScene* scene;
 
 public slots:
-    void updateGame() ;
+    void updateGame();
 };
 
-#endif
+#endif // GAME_H

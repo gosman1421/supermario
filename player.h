@@ -15,7 +15,7 @@ private:
     int coins;              // Coins collected by the player
     bool hasTemporaryAbility; // Flag to indicate if the player has a temporary ability
 public:
-   // player(QWidget *parent = nullptr);
+        // player(QWidget *parent = nullptr);
     explicit player(QGraphicsItem* parent = nullptr);
 
     // Getters
@@ -45,9 +45,6 @@ signals:
     void lifeChanged(int lives);
     void scoreChanged(int score);
     void coinsChanged(int coins);
-   // ~player();
+    // ~player();
 };
 #endif // PLAYER_H
-
-
-

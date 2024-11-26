@@ -78,4 +78,3 @@ void player::keyPressEvent(QKeyEvent* event) {
 //player::~player()
 //{
 //}
-

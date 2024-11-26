@@ -6,7 +6,7 @@
 #include <QGraphicsTextItem>
 #include "score.h"
 #include "player.h"
-
+#include <QGraphicsItem>
 class coin : public QGraphicsPixmapItem {
 public:
     coin(QGraphicsScene *scene, Score *scoreManager);
@@ -19,4 +19,3 @@ private:
 };
 
 #endif
-
