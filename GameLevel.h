@@ -13,7 +13,6 @@ public:
     // Constructor
     GameLevel(int number, QString name = "Level")
         : levelNumber(number), levelName(name) {}
-
     // Getters
     int getLevelNumber() const { return levelNumber; }
     QString getLevelName() const { return levelName; }

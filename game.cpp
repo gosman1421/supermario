@@ -3,12 +3,14 @@
 #include <QGraphicsTextItem>
 #include <QDebug>
 #include <QTimer>
+#include <QImage>
+#include <QBrush>
 Game::Game(): score(0), currentLevel(1) {
     scene = new QGraphicsScene();
     view = new QGraphicsView(scene);
+    view->setBackgroundBrush(QBrush(QImage("C:/Users/Dell/OneDrive/Desktop/rb_302.png")));
     view->setFixedSize(800, 600);
     view->show();
-
     gameTimer = new QTimer(this);
     health = new Health(100, 3);
     scoreManager = new Score();
@@ -49,7 +51,10 @@ void Game::initGame() {
 void Game::loadLevel(int level) {
     //scene->clear();
     QGraphicsTextItem* levelText = new QGraphicsTextItem(QString("Level %1").arg(level));
-    levelText->setPos(10, 10);
+    levelText->setPos(700,-200);
+    QFont font("Times", 16, QFont::Bold);
+    levelText->setFont(font);
+    levelText->setDefaultTextColor(Qt::red);
     scene->addItem(levelText);
 }
 

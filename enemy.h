@@ -12,7 +12,6 @@ class Enemy : public QObject, public QGraphicsPixmapItem {
 public:
     enum ObstacleType { Static, Moving };
 
-
     Enemy(QGraphicsScene *scene, ObstacleType type, Score *setscore, int speed = 0);
 
 private:

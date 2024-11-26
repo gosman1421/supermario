@@ -15,6 +15,7 @@ player::player( QGraphicsItem* parent, QGraphicsScene *scene1)
     // Set the player's image ("/Users/ghadasherif/Desktop/CS2/Assignment 6/cs2 assignment 4/cs2 assignment 4/player.png")
     setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/PngItem_1478513.png"));
     setScale(0.1);
+    setPos(0, 300);
     setFlag(QGraphicsItem::ItemIsFocusable);
     //setFocus();
 }
@@ -41,7 +42,6 @@ void player::addCoin() {
     emit coinsChanged(coins);
 }
 
-// Abilities
 void player::activateTemporaryAbility() {
     hasTemporaryAbility = true;
 }
@@ -65,14 +65,13 @@ bool player::isAlive() const {
 
 void player::keyPressEvent(QKeyEvent* event) {
     if (event->key() == Qt::Key_Left) {
-        setPos(QGraphicsPixmapItem::x() - 10, QGraphicsPixmapItem::y()); // Move left
+        setPos(QGraphicsPixmapItem::x() - 10, QGraphicsPixmapItem::y());
     } else if (event->key() == Qt::Key_Right) {
-        setPos(QGraphicsPixmapItem::x() + 10, QGraphicsPixmapItem::y()); // Move right
+        setPos(QGraphicsPixmapItem::x() + 10, QGraphicsPixmapItem::y());
     } else if (event->key() == Qt::Key_Up) {
         // Jump upward
         setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() - 20);
 
-        // Set a QTimer to call a function to bring the player back down
         QTimer::singleShot(1000, this, [this]() {
             moveDown();
         });

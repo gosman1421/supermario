@@ -8,7 +8,7 @@
 Enemy::Enemy(QGraphicsScene *scene, ObstacleType type, Score *newscore, int speed)
     : scene(scene), type(type), setscore(newscore), speed(speed) {
 
-    setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/PngItem_1478513.png"));
+    setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
     setScale(0.1);
     scene->addItem(this);
     setPos(800, 300);
