@@ -11,7 +11,7 @@ Enemy::Enemy(QGraphicsScene *scene, ObstacleType type, Score *newscore, int spee
     setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
     setScale(0.1);
     scene->addItem(this);
-    setPos(800, 300);
+    setPos(800, 500);
 
         if (type == Moving) {
         QTimer *timer = new QTimer(this);
