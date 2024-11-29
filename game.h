@@ -25,7 +25,7 @@ private:
     QList<Enemy*> enemies;
     int score;
     int currentLevel;
-
+    bool shield;
     void initGame();
     void loadLevel(int level);
 
@@ -41,6 +41,7 @@ public:
     void checkCollisions();
     void updateHUD();
     QGraphicsScene* scene;
+    void simulateMouseClick();
 
 public slots:
     void updateGame();

@@ -11,7 +11,7 @@
 //}
 
 player::player( QGraphicsItem* parent, QGraphicsScene *scene1)
-    : QGraphicsPixmapItem(parent), score(0), lives(3), coins(0), hasTemporaryAbility(false), scene(scene1){
+    : QGraphicsPixmapItem(parent), score(0), lives(3), coins(0), hasTemporaryAbility(false), scene(scene1), isjumping(false){
     // Set the player's image ("/Users/ghadasherif/Desktop/CS2/Assignment 6/cs2 assignment 4/cs2 assignment 4/player.png")
     setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/PngItem_1478513.png"));
     setScale(0.1);
@@ -68,12 +68,13 @@ void player::keyPressEvent(QKeyEvent* event) {
         setPos(QGraphicsPixmapItem::x() - 10, QGraphicsPixmapItem::y());
     } else if (event->key() == Qt::Key_Right) {
         setPos(QGraphicsPixmapItem::x() + 10, QGraphicsPixmapItem::y());
-    } else if (event->key() == Qt::Key_Up) {
+    } else if (event->key() == Qt::Key_Up && !isjumping) {
         // Jump upward
-        setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() - 20);
-
-        QTimer::singleShot(1000, this, [this]() {
+        setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() - 25);
+        isjumping = true;
+        QTimer::singleShot(500, this, [this]() {
             moveDown();
+            isjumping = false;
         });
     }
     scene->update();
@@ -81,7 +82,7 @@ void player::keyPressEvent(QKeyEvent* event) {
 
 // Function to move the player back down
 void player::moveDown() {
-    setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() + 20); // Move back down
+    setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() + 25); // Move back down
     scene->update();
 }
 

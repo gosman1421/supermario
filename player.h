@@ -19,6 +19,7 @@ private:
     int lives;              // Current lives of the player
     int coins;              // Coins collected by the player
     bool hasTemporaryAbility;
+    bool isjumping;
       // Flag to indicate if the player has a temporary ability
 public:
         // player(QWidget *parent = nullptr);
@@ -46,7 +47,7 @@ public:
     void moveDown();
 protected:
     // Handle keyboard events for player movement
-    void keyPressEvent(QKeyEvent* event) override;
+    void keyPressEvent(QKeyEvent* event);
 
 signals:
     void lifeChanged(int lives);

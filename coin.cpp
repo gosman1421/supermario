@@ -52,15 +52,17 @@ coin::coin(QGraphicsScene *scene, Score *scoreManager)
     scene->addItem(this);
 }
 
-void coin::checkCollisionWithPlayer(player *mainplayer) {
+bool coin::checkCollisionWithPlayer(player *mainplayer) {
     if (collidesWithItem(mainplayer)) {
         collectCoin();
+        return true;
     }
+    return false;
 }
 
 void coin::collectCoin() {
     scene->removeItem(this);
-    delete this;
+    //delete this;
 
     //scoreManager->increasescore();
 }

@@ -5,6 +5,8 @@
 #include <QTimer>
 #include <QImage>
 #include <QBrush>
+#include <QGraphicsSceneMouseEvent>
+#include <QApplication>
 
 Game::Game() : score(0), currentLevel(1) {
     // Create the scene and view
@@ -44,15 +46,48 @@ Game::Game() : score(0), currentLevel(1) {
     // Add game elements to the scene
     scene->addItem(scoreManager);
     scene->addItem(mainPlayer);
+    simulateMouseClick();
     scene->addItem(health);
     // Update the scene
     scene->update();
 
     // Connect game timer if needed
     // connect(gameTimer, &QTimer::timeout, this, &Game::updateGame);
+    gameTimer = new QTimer(this);
 
+    // Connect the timer's timeout signal to the updateGame method
+    connect(gameTimer, &QTimer::timeout, this, &Game::updateGame);
+
+    // Set the timer to trigger every 500 milliseconds (0.5 seconds)
+    gameTimer->start(500);
     // Initialize the game
     initGame();
+    shield = false;
+}
+
+#include <QGraphicsSceneMouseEvent>
+#include <QApplication>
+
+void Game::simulateMouseClick() {
+    // Create a QGraphicsSceneMouseEvent for the mouse press
+    QGraphicsSceneMouseEvent pressEvent(QEvent::GraphicsSceneMousePress);
+    pressEvent.setScenePos(mainPlayer->QGraphicsItem::pos());  // Get position of mainPlayer (QGraphicsItem)
+    pressEvent.setButton(Qt::LeftButton);       // Specify the left mouse button
+    pressEvent.setButtons(Qt::LeftButton);      // Indicate which buttons are pressed
+    pressEvent.setModifiers(Qt::NoModifier);    // No keyboard modifiers
+
+    // Send the mouse press event to the player
+    QApplication::sendEvent(mainPlayer, &pressEvent);
+
+    // Create a QGraphicsSceneMouseEvent for the mouse release
+    QGraphicsSceneMouseEvent releaseEvent(QEvent::GraphicsSceneMouseRelease);
+    releaseEvent.setScenePos(mainPlayer->QGraphicsItem::pos());  // Get position of mainPlayer (QGraphicsItem)
+    releaseEvent.setButton(Qt::LeftButton);       // Specify the left mouse button
+    releaseEvent.setButtons(Qt::NoButton);       // No buttons pressed
+    releaseEvent.setModifiers(Qt::NoModifier);   // No keyboard modifiers
+
+    // Send the mouse release event to the player
+    QApplication::sendEvent(mainPlayer, &releaseEvent);
 }
 
 // Game::Game(): score(0), currentLevel(1) {
@@ -92,6 +127,7 @@ void Game::initGame() {
         newCoin->setPos(i * 150 + 100, 550);
         coins.append(newCoin);
     }
+
 
     Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 2);
     enemies.append(newEnemy);
@@ -138,11 +174,25 @@ void Game::nextLevel() {
 
 void Game::checkCollisions() {
     for (coin* c : coins) {
-        c->checkCollisionWithPlayer(mainPlayer);
+        if (c->checkCollisionWithPlayer(mainPlayer)){
+            //delete c;
+
+            scoreManager ->increasescore();
+            scene ->update();
+            coins.removeAll(c);
+        }
     }
-    //for (Enemy* e : enemies) {
-    //  e->move();
-    //}
+    for (Enemy* e : enemies) {
+        if (e->checkCollisionWithPlayer(mainPlayer) && !shield){
+            health->takeDamage(20);
+            shield = true;
+            QTimer::singleShot(500, this, [this]() {
+                shield = false;
+            });
+            scene ->update();
+
+        }
+    }
 }
 
 void Game::updateHUD() {

@@ -11,7 +11,7 @@ class coin : public QGraphicsPixmapItem {
 public:
     coin(QGraphicsScene *scene, Score *scoreManager);
 
-    void checkCollisionWithPlayer(player *mainplayer);
+    bool checkCollisionWithPlayer(player *mainplayer);
     void collectCoin();
 private:
     QGraphicsScene *scene;

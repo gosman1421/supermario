@@ -40,3 +40,11 @@ void Enemy::move() {
         }
     }
 }
+
+bool Enemy::checkCollisionWithPlayer(player *mainplayer) {
+    if (collidesWithItem(mainplayer)) {
+
+        return true;
+    }
+    return false;
+}

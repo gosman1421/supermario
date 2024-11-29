@@ -10,9 +10,11 @@ Score::Score(QGraphicsItem * parent):QGraphicsTextItem(parent)
     setPos(0,0);
 }
 
+
 void Score::increasescore()
 {
-    score++;
+    score = score + 30;
+    setPlainText(QString("Score: ") + QString::number(score));
 }
 
 

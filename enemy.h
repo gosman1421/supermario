@@ -7,12 +7,14 @@
 #include <QObject>
 #include "Score.h"
 #include <QGraphicsItem>
+#include "player.h"
 class Enemy : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
 public:
     enum ObstacleType { Static, Moving };
 
     Enemy(QGraphicsScene *scene, ObstacleType type, Score *setscore, int speed = 0);
+    bool checkCollisionWithPlayer(player *mainplayer);
 
 private:
     QGraphicsScene *scene;
