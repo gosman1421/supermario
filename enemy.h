@@ -13,7 +13,7 @@ class Enemy : public QObject, public QGraphicsPixmapItem {
 public:
     enum ObstacleType { Static, Moving };
 
-    Enemy(QGraphicsScene *scene, ObstacleType type, Score *setscore, int speed = 0);
+    Enemy(QGraphicsScene *scene, ObstacleType type, Score *setscore, int speed = 0, int height = 0, int starting = 0, int ending = 0);
     bool checkCollisionWithPlayer(player *mainplayer);
 
 private:
@@ -21,6 +21,9 @@ private:
     ObstacleType type;
     int speed;
     Score * setscore;
+    int height;
+    int starting;
+    int ending;
 
 private slots:
     void move();

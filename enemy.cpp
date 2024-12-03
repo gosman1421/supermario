@@ -5,13 +5,14 @@
 #include "Score.h"
 #include "player.h"
 #include "enemy.h"
-Enemy::Enemy(QGraphicsScene *scene, ObstacleType type, Score *newscore, int speed)
-    : scene(scene), type(type), setscore(newscore), speed(speed) {
+Enemy::Enemy(QGraphicsScene *scene, ObstacleType type, Score *newscore, int speed, int h, int start, int end)
+    : scene(scene), type(type), speed(speed), setscore(newscore), height(h), starting(start), ending(end){
 
-    setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
-    setScale(0.1);
+    setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/super-mario-bros-goomba-8-bit-0c7e43b6db7b44d66a6308e888bbc222.png"));
+    setScale(0.05);
     scene->addItem(this);
-    setPos(800, 500);
+    setPos(starting, height);
+    scene->update();
 
         if (type == Moving) {
         QTimer *timer = new QTimer(this);
@@ -34,9 +35,12 @@ void Enemy::move() {
         //     }
         // }
 
-        if (x() + pixmap().width() < 0) {
-            scene->removeItem(this);
-            delete this;
+
+        if (x() <= ending || x() >= starting) {
+            //this->setPos(starting, height);
+            // scene->removeItem(this);
+            // delete this;
+            speed -= 2*speed;
         }
     }
 }

@@ -28,7 +28,7 @@ private:
     bool shield;
     void initGame();
     void loadLevel(int level);
-
+    //QGraphicsTextItem* levelText;
 public:
     Game();
     ~Game();

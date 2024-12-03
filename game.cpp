@@ -7,7 +7,6 @@
 #include <QBrush>
 #include <QGraphicsSceneMouseEvent>
 #include <QApplication>
-
 Game::Game() : score(0), currentLevel(1) {
     // Create the scene and view
     scene = new QGraphicsScene();
@@ -15,7 +14,7 @@ Game::Game() : score(0), currentLevel(1) {
 
     // Set the view's fixed size
     view->setFixedSize(800, 600);
-    view->setSceneRect(0, 0, 800, 600); // Match scene dimensions to the view
+    view->setSceneRect(0, 0, 2000, 600); // Match scene dimensions to the view
 
     // Load the background image
     QPixmap backgroundPixmap("C:/Users/Dell/OneDrive/Desktop/Scene.png");
@@ -129,13 +128,12 @@ void Game::initGame() {
     }
 
 
-    Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 2);
+    Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 10, 550, 800, 0);
     enemies.append(newEnemy);
     health->setPos(0, 40);
     scene->update();
-
 }
-
+QGraphicsTextItem* LLL;
 void Game::loadLevel(int level) {
     //scene->clear();
     QGraphicsTextItem* levelText = new QGraphicsTextItem(QString("Level %1").arg(level));
@@ -143,7 +141,9 @@ void Game::loadLevel(int level) {
     QFont font("Times", 16, QFont::Bold);
     levelText->setFont(font);
     levelText->setDefaultTextColor(Qt::red);
-    scene->addItem(levelText);
+    //scene->addItem(levelText);
+    LLL = levelText;
+    scene->addItem(LLL);
 }
 
 void Game::startGame() {
@@ -186,7 +186,7 @@ void Game::checkCollisions() {
         if (e->checkCollisionWithPlayer(mainPlayer) && !shield){
             health->takeDamage(20);
             shield = true;
-            QTimer::singleShot(500, this, [this]() {
+            QTimer::singleShot(1000, this, [this]() {
                 shield = false;
             });
             scene ->update();
@@ -200,6 +200,24 @@ void Game::updateHUD() {
 }
 
 void Game::updateGame() {
+    view->centerOn(mainPlayer);
     checkCollisions();
     updateHUD();
+    // QPointF sceneCenter(view->sceneRect().center());
+
+    // // Get the mainPlayer's position
+    // QPointF playerPos = mainPlayer->scenePos();
+
+    // // Calculate the offset needed to center the main player
+    // QPointF offset = sceneCenter - playerPos;
+
+    // health->setPos(health->pos() + offset);
+    // scoreManager->setPos(scoreManager->pos() + offset);
+    // Map the view's top-left corner to the scene coordinates
+    QPointF sceneTopLeft = view->mapToScene(0, 0);
+
+    // Add some padding (e.g., 10px from the top and left)
+    health->setPos(sceneTopLeft.x(), sceneTopLeft.y() +40);
+    scoreManager->setPos(sceneTopLeft.x(), sceneTopLeft.y());
+    LLL->setPos(sceneTopLeft.x() + 650, sceneTopLeft.y());
 }

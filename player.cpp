@@ -15,7 +15,7 @@ player::player( QGraphicsItem* parent, QGraphicsScene *scene1)
     // Set the player's image ("/Users/ghadasherif/Desktop/CS2/Assignment 6/cs2 assignment 4/cs2 assignment 4/player.png")
     setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/PngItem_1478513.png"));
     setScale(0.1);
-    setPos(0, 500);
+    setPos(0, 525);
     setFlag(QGraphicsItem::ItemIsFocusable);
     //this->setFocus();
 }

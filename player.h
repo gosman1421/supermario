@@ -47,7 +47,7 @@ public:
     void moveDown();
 protected:
     // Handle keyboard events for player movement
-    void keyPressEvent(QKeyEvent* event);
+    void keyPressEvent(QKeyEvent* event) override;
 
 signals:
     void lifeChanged(int lives);
