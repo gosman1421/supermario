@@ -128,7 +128,7 @@ void Game::initGame() {
     }
 
 
-    Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 10, 550, 800, 0);
+    Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, 800, 0);
     enemies.append(newEnemy);
     health->setPos(0, 40);
     scene->update();
