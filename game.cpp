@@ -26,7 +26,7 @@ Game::Game() : score(0), currentLevel(1) {
 
 
     // Load the background image
-    QPixmap backgroundPixmap("/Users/ghadasherif/Downloads/supermario-main-4/rb_2150262151.png");
+    QPixmap backgroundPixmap("C:/Users/Dell/OneDrive/Desktop/Scene.png");
 
     // Scale the background to fit the scene's size
     QPixmap scaledPixmap = backgroundPixmap.scaled(view->sceneRect().size().toSize(),
