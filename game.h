@@ -30,6 +30,7 @@ private:
     void loadLevel(int level);
     void initGame();
     //QGraphicsTextItem* levelText;
+    QGraphicsPixmapItem* finishLine;
 public:
     Game();
     ~Game();
