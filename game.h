@@ -34,9 +34,6 @@ private:
 public:
     Game();
     ~Game();
-
-
-
     void displaymainwindow();
     void startGame();
     void restartGame();

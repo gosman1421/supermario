@@ -26,7 +26,7 @@ Game::Game() : score(0), currentLevel(1) {
 
 
     // Load the background image
-    QPixmap backgroundPixmap("/Users/ghadasherif/Downloads/supermario-main-4/rb_2150262151.png");
+    QPixmap backgroundPixmap("C:/Users/Dell/OneDrive/Desktop/Scene.png");
 
     // Scale the background to fit the scene's size
     QPixmap scaledPixmap = backgroundPixmap.scaled(view->sceneRect().size().toSize(),
@@ -140,9 +140,9 @@ void Game::initGame() {
 
     Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, 800, 0);
     enemies.append(newEnemy);
-    QGraphicsPixmapItem* finishLine = new QGraphicsPixmapItem(QPixmap("/Users/ghadasherif/Downloads/finish-line-flag-vector-38518916.jpg"));
-    finishLine->setPos(900, 500);  // Adjust position to fit the scene
-    finishLine->setScale(0.1);      // Adjust scale if needed
+    QGraphicsPixmapItem* finishLine = new QGraphicsPixmapItem(QPixmap("C:/Users/Dell/OneDrive/Desktop/flag.png"));
+    finishLine->setPos(900, 500);
+    finishLine->setScale(0.5);
     scene->addItem(finishLine);
 
     health->setPos(0, 40);
