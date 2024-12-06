@@ -17,7 +17,7 @@ player::player( QGraphicsItem* parent, QGraphicsScene *scene1)
     setScale(0.1);
     setPos(0, 525);
     setFlag(QGraphicsItem::ItemIsFocusable);
-    //this->setFocus();
+    this->QGraphicsItem::setFocus();
 }
 //"/Users/ghadasherif/Desktop/CS2/Assignment 6/cs2 assignment 4/cs2 assignment 4/player.png"
 // Getters
