@@ -7,6 +7,7 @@ public:
     void increasescore();
     void decrementscore();
     int getscore();
+    void resetscore();
 private:
     int score;
 };

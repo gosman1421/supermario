@@ -4,9 +4,11 @@
 #include <QGraphicsView>
 #include "game.h"
 #include "Score.h"
+#include "welcomewindow.h"
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
-    Game game;
-    game.startGame();
+    welcomewindow welcome;
+    welcome.show();
+
     return app.exec();
 }

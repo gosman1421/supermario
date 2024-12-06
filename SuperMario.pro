@@ -1,4 +1,4 @@
-QT       += core gui
+QT+= core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,7 +15,9 @@ SOURCES += \
     enemy.cpp \
     game.cpp \
     main.cpp \
-    player.cpp
+    mainwindow.cpp \
+    player.cpp \
+    welcomewindow.cpp
 
 HEADERS += \
     GameLevel.h \
@@ -24,9 +26,14 @@ HEADERS += \
     coin.h \
     enemy.h \
     game.h \
-    player.h
+    mainwindow.h \
+    player.h \
+    welcomewindow.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+FORMS += \
+    welcomewindow.ui

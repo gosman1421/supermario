@@ -11,6 +11,7 @@
 #include "enemy.h"
 #include "Score.h"
 #include "GameLevel.h"
+#include "mainwindow.h"
 class Game: public QObject {
     Q_OBJECT
 
@@ -26,14 +27,20 @@ private:
     int score;
     int currentLevel;
     bool shield;
-    void initGame();
+
     void loadLevel(int level);
+    void initGame();
     //QGraphicsTextItem* levelText;
 public:
     Game();
     ~Game();
 
+
+
+    void displaymainwindow();
     void startGame();
+    void restartGame();
+    void quitGame();
     void pauseGame();
     void restartLevel();
     void gameOver();
@@ -45,6 +52,7 @@ public:
 
 public slots:
     void updateGame();
+
 };
 
 #endif // GAME_H
