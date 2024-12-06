@@ -26,7 +26,7 @@ Game::Game() : score(0), currentLevel(1) {
 
 
     // Load the background image
-    QPixmap backgroundPixmap("C:/Users/Dell/OneDrive/Desktop/Scene.png");
+    QPixmap backgroundPixmap("C:/Users/AUC/Documents/GitHub/supermario/rb_2150262151.png");
 
     // Scale the background to fit the scene's size
     QPixmap scaledPixmap = backgroundPixmap.scaled(view->sceneRect().size().toSize(),
@@ -157,8 +157,8 @@ void Game::loadLevel(int level) {
 }
 
 void Game::startGame(){
-    gameTimer->start(16);
 
+    gameTimer->start(16);
     qDebug() << "Game started!";
 }
 
@@ -171,7 +171,7 @@ void Game::restartLevel() {
     health->resetHealth();
     loadLevel(currentLevel);
     qDebug() << "Level restarted.";
-}
+    }
 
 void Game::gameOver() {
     qDebug() << "Game Over!";
