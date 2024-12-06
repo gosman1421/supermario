@@ -13,10 +13,12 @@
 player::player( QGraphicsItem* parent, QGraphicsScene *scene1)
     : QGraphicsPixmapItem(parent), score(0), lives(3), coins(0), hasTemporaryAbility(false), scene(scene1), isjumping(false){
     // Set the player's image ("/Users/ghadasherif/Desktop/CS2/Assignment 6/cs2 assignment 4/cs2 assignment 4/player.png")
-    setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/PngItem_1478513.png"));
+    setPixmap(QPixmap("C:/Users/AUC/Downloads/mario.jpg"));
     setScale(0.1);
     setPos(0, 525);
     setFlag(QGraphicsItem::ItemIsFocusable);
+    this->QGraphicsItem::setFocus();
+
     //this->setFocus();
 }
 //"/Users/ghadasherif/Desktop/CS2/Assignment 6/cs2 assignment 4/cs2 assignment 4/player.png"
@@ -64,13 +66,14 @@ bool player::isAlive() const {
 }
 
 void player::keyPressEvent(QKeyEvent* event) {
+
     if (event->key() == Qt::Key_Left) {
         setPos(QGraphicsPixmapItem::x() - 10, QGraphicsPixmapItem::y());
     } else if (event->key() == Qt::Key_Right) {
         setPos(QGraphicsPixmapItem::x() + 10, QGraphicsPixmapItem::y());
     } else if (event->key() == Qt::Key_Up && !isjumping) {
         // Jump upward
-        setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() - 25);
+        setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() - 60);
         isjumping = true;
         QTimer::singleShot(500, this, [this]() {
             moveDown();
@@ -82,7 +85,7 @@ void player::keyPressEvent(QKeyEvent* event) {
 
 // Function to move the player back down
 void player::moveDown() {
-    setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() + 25); // Move back down
+    setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() + 60); // Move back down
     scene->update();
 }
 

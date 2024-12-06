@@ -103,6 +103,7 @@ bool Health::isAlive() const {
 
 void Health::resetHealth() {
     currentHealth = maxHealth;
+    currentLives = maxLives;
     updateDisplay();
 }
 

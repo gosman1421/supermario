@@ -26,3 +26,8 @@ int Score::getscore()
 {
     return score;
 }
+
+void Score::resetscore() {
+    score = 0;
+    setPlainText(QString("Score: ") + QString::number(score));
+}

@@ -1,0 +1,14 @@
+debug/Health.o
+debug/Score.o
+debug/coin.o
+debug/enemy.o
+debug/game.o
+debug/main.o
+debug/mainwindow.o
+debug/player.o
+debug/welcomewindow.o
+debug/moc_enemy.o
+debug/moc_game.o
+debug/moc_mainwindow.o
+debug/moc_player.o
+debug/moc_welcomewindow.o
