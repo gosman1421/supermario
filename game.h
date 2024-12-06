@@ -11,7 +11,6 @@
 #include "enemy.h"
 #include "Score.h"
 #include "GameLevel.h"
-#include "mainwindow.h"
 class Game: public QObject {
     Q_OBJECT
 

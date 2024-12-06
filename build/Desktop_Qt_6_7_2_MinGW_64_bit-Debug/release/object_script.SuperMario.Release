@@ -5,6 +5,8 @@ release/enemy.o
 release/game.o
 release/main.o
 release/player.o
+release/welcomewindow.o
 release/moc_enemy.o
 release/moc_game.o
 release/moc_player.o
+release/moc_welcomewindow.o

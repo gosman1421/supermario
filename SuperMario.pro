@@ -15,7 +15,6 @@ SOURCES += \
     enemy.cpp \
     game.cpp \
     main.cpp \
-    mainwindow.cpp \
     player.cpp \
     welcomewindow.cpp
 
@@ -26,7 +25,6 @@ HEADERS += \
     coin.h \
     enemy.h \
     game.h \
-    mainwindow.h \
     player.h \
     welcomewindow.h
 

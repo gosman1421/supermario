@@ -26,7 +26,7 @@ Game::Game() : score(0), currentLevel(1) {
 
 
     // Load the background image
-    QPixmap backgroundPixmap("C:/Users/AUC/Documents/GitHub/supermario/rb_2150262151.png");
+    QPixmap backgroundPixmap("C:/Users/Dell/OneDrive/Desktop/Scene.png");
 
     // Scale the background to fit the scene's size
     QPixmap scaledPixmap = backgroundPixmap.scaled(view->sceneRect().size().toSize(),
@@ -230,34 +230,6 @@ void Game::checkCollisions() {
 
 
 }*/
-void Game::displaymainwindow(){
-
-    QRectF sceneRect = scene->sceneRect();
-    int sceneWidth = sceneRect.width();
-
-    QGraphicsTextItem* titletext = new QGraphicsTextItem(QString("Bassel Shoeib"));
-    QFont titleFont("Arial", 50);
-    titletext->setFont(titleFont);
-    int txpos = sceneWidth / 2 - titletext->boundingRect().width() / 2;
-    int typos = 150;
-    titletext->setPos(txpos, typos);
-    scene->addItem(titletext);
-
-    mainwindow* playwindow = new mainwindow(QString("PLAY"));
-    int bxpos = scene->sceneRect().width() / 2 - playwindow->boundingRect().width() / 2;
-    int bypos = 275;
-    playwindow->setPos(bxpos, bypos);
-    connect(playwindow, &mainwindow::clicked, this, &Game::startGame);
-    scene->addItem(playwindow);
-
-    mainwindow* quitwindow = new mainwindow(QString("QUIT"));
-    int qxpos = scene->sceneRect().width() / 2 - quitwindow->boundingRect().width() / 2;
-    int qypos = 350;
-    quitwindow->setPos(qxpos, qypos);
-    connect(quitwindow, &mainwindow::clicked, this, &Game::quitGame);
-    scene->addItem(quitwindow);
-    view->show();
-}
 
 void Game::updateHUD() {
     qDebug() << "Score:" << score << "Health:" << health->getCurrentHealth();
