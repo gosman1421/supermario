@@ -10,11 +10,9 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QApplication>
 #include <QMessageBox>
-
+#include <QGraphicsSceneMouseEvent>
+#include <QApplication>
 Game::Game() : score(0), currentLevel(1) {
-    // Create the scene and view
-
-
     scene = new QGraphicsScene();
     view = new QGraphicsView(scene);
     scene->clear();
@@ -22,80 +20,56 @@ Game::Game() : score(0), currentLevel(1) {
 
     // Set the view's fixed size
     view->setFixedSize(800, 600);
-    view->setSceneRect(0, 0, 2000, 600); // Match scene dimensions to the view
+    view->setSceneRect(0, 0, 2000, 600);
 
-
-    // Load the background image
     QPixmap backgroundPixmap("C:/Users/Dell/OneDrive/Desktop/Scene.png");
 
-    // Scale the background to fit the scene's size
     QPixmap scaledPixmap = backgroundPixmap.scaled(view->sceneRect().size().toSize(),
                                                    Qt::KeepAspectRatioByExpanding,
                                                    Qt::SmoothTransformation);
-
-    // Add the background image as a QGraphicsPixmapItem
     QGraphicsPixmapItem* backgroundItem = new QGraphicsPixmapItem(scaledPixmap);
-
-    // Center the background item in the scene
     backgroundItem->setPos((view->sceneRect().width() - scaledPixmap.width()) / 2,
                            (view->sceneRect().height() - scaledPixmap.height()) / 2);
     scene->addItem(backgroundItem);
 
-    // Show the view
     view->show();
 
-    // Initialize game elements
     gameTimer = new QTimer(this);
     health = new Health(100, 3);
     scoreManager = new Score();
     mainPlayer = new player();
     mainPlayer->scene = scene;
-
-    // Add game elements to the scene
     scene->addItem(scoreManager);
     scene->addItem(mainPlayer);
     simulateMouseClick();
     scene->addItem(health);
-    // Update the scene
+
     scene->update();
     connect(mainPlayer, &player::gameOver, this, &Game::gameOver);
-
-    // Connect game timer if needed
-    // connect(gameTimer, &QTimer::timeout, this, &Game::updateGame);
     gameTimer = new QTimer(this);
 
-    // Connect the timer's timeout signal to the updateGame method
     connect(gameTimer, &QTimer::timeout, this, &Game::updateGame);
 
-    // Set the timer to trigger every 500 milliseconds (0.5 seconds)
     gameTimer->start(500);
-    // Initialize the game
     initGame();
     shield = false;
 }
 
-#include <QGraphicsSceneMouseEvent>
-#include <QApplication>
-
 void Game::simulateMouseClick() {
-    // Create a QGraphicsSceneMouseEvent for the mouse press
     QGraphicsSceneMouseEvent pressEvent(QEvent::GraphicsSceneMousePress);
-    pressEvent.setScenePos(mainPlayer->QGraphicsItem::pos());  // Get position of mainPlayer (QGraphicsItem)
-    pressEvent.setButton(Qt::LeftButton);       // Specify the left mouse button
-    pressEvent.setButtons(Qt::LeftButton);      // Indicate which buttons are pressed
-    pressEvent.setModifiers(Qt::NoModifier);    // No keyboard modifiers
+    pressEvent.setScenePos(mainPlayer->QGraphicsItem::pos());
+    pressEvent.setButton(Qt::LeftButton);
+    pressEvent.setButtons(Qt::LeftButton);
+    pressEvent.setModifiers(Qt::NoModifier);
 
-    // Send the mouse press event to the player
     QApplication::sendEvent(mainPlayer, &pressEvent);
 
-    // Create a QGraphicsSceneMouseEvent for the mouse release
     QGraphicsSceneMouseEvent releaseEvent(QEvent::GraphicsSceneMouseRelease);
-    releaseEvent.setScenePos(mainPlayer->QGraphicsItem::pos());  // Get position of mainPlayer (QGraphicsItem)
-    releaseEvent.setButton(Qt::LeftButton);       // Specify the left mouse button
-    releaseEvent.setButtons(Qt::NoButton);       // No buttons pressed
-    releaseEvent.setModifiers(Qt::NoModifier);   // No keyboard modifiers
+    releaseEvent.setScenePos(mainPlayer->QGraphicsItem::pos());
+    releaseEvent.setButton(Qt::LeftButton);
+    releaseEvent.setButtons(Qt::NoButton);
+    releaseEvent.setModifiers(Qt::NoModifier);
 
-    // Send the mouse release event to the player
     QApplication::sendEvent(mainPlayer, &releaseEvent);
 }
 
@@ -131,26 +105,26 @@ void Game::initGame() {
     loadLevel(currentLevel);
     updateHUD();
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 10; i++) {
         coin* newCoin = new coin(scene, scoreManager);
         newCoin->setPos(i * 150 + 100, 550);
         coins.append(newCoin);
     }
 
 
-    Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, 800, 0);
+    Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, 400, 0);
     enemies.append(newEnemy);
+    Enemy* newEnemy2 = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, 800, 400);
+    enemies.append(newEnemy2);
     QGraphicsPixmapItem* finishLine = new QGraphicsPixmapItem(QPixmap("C:/Users/Dell/OneDrive/Desktop/flag.png"));
-    finishLine->setPos(900, 500);
+    finishLine->setPos(1900, 500);
     finishLine->setScale(0.5);
     scene->addItem(finishLine);
 
     health->setPos(0, 40);
     scene->update();
-
-    // Store a reference to the finish line (if needed globally)
     this->finishLine = finishLine;
-    }
+}
 QGraphicsTextItem* LLL;
 void Game::loadLevel(int level) {
     QGraphicsTextItem* levelText = new QGraphicsTextItem(QString("Level %1").arg(level));
@@ -161,8 +135,6 @@ void Game::loadLevel(int level) {
     //scene->addItem(levelText);
     LLL = levelText;
     scene->addItem(LLL);
-
-
 }
 
 void Game::startGame(){
@@ -183,7 +155,7 @@ void Game::restartLevel() {
 }
 
 void Game::gameOver() {
-    gameTimer->stop();  // Stop the game timer
+    gameTimer->stop();
 
     QMessageBox::critical(
         nullptr,
@@ -195,7 +167,6 @@ void Game::gameOver() {
     welcomewindow* welcome = new welcomewindow();
     welcome->show();
 
-    // Clean up the game elements
     delete scene;
     delete view;
     delete gameTimer;
@@ -203,10 +174,9 @@ void Game::gameOver() {
     delete scoreManager;
     delete mainPlayer;
 
-    // Exit the application or reset the state for replay
     QApplication::quit();
-//    qDebug() << "Game Over!";
-//    gameTimer->stop();
+    //    qDebug() << "Game Over!";
+    //    gameTimer->stop();
 }
 
 void Game::nextLevel() {
@@ -268,35 +238,25 @@ void Game::updateHUD() {
 }
 
 void Game::restartGame() {
-    // Stop the game timer
+    health->resetHealth();
+    scoreManager->resetscore();
 
-        // Reset health and score to initial values
-        health->resetHealth();
-        scoreManager->resetscore();
+    currentLevel = 1;
+    loadLevel(currentLevel);
+    mainPlayer->setPos(100, 550);
 
-        // Reset the level to 1
-        currentLevel = 1;
-        loadLevel(currentLevel);  // Load the first level
-
-        // Reset player's position to the initial starting position
-        mainPlayer->setPos(100, 550);  // Assume initial position is (100, 550)
-
-        // Clear and re-add coins and enemies (or reset their positions)
-        // Reinitialize coins and enemies
-        for (int i = 0; i < 5; i++) {
-            coin* newCoin = new coin(scene, scoreManager);
-            newCoin->setPos(i * 150 + 100, 550); // Position the coins
-            coins.append(newCoin);
-        }
-
-        Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 10, 550, 800, 0);
-        enemies.append(newEnemy);
-
-        // Start the game timer
-        startGame();
-
-        qDebug() << "Game Restarted!";
+    for (int i = 0; i < 5; i++) {
+        coin* newCoin = new coin(scene, scoreManager);
+        newCoin->setPos(i * 150 + 100, 550);
+        coins.append(newCoin);
     }
+
+    Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 10, 550, 800, 0);
+    enemies.append(newEnemy);
+    startGame();
+
+    qDebug() << "Game Restarted!";
+}
 
 
 
@@ -304,14 +264,14 @@ void Game::updateGame() {
     view->centerOn(mainPlayer);
     checkCollisions();
     updateHUD();
-    if (mainPlayer->collidesWithItem(finishLine)) {  // Check collision
-            gameOver();
-            return;  // Exit the function to prevent further updates
+    if (mainPlayer->collidesWithItem(finishLine)) {
+        gameOver();
+        return;
     }
 
     if (health->getCurrentHealth() == 0 && !health->hasLivesLeft()) {
-            gameOver();
-            return;
+        gameOver();
+        return;
     }
     if (health->getCurrentHealth() == 0){
         health->loseLife();
@@ -345,17 +305,14 @@ void Game::updateGame() {
 
     // health->setPos(health->pos() + offset);
     // scoreManager->setPos(scoreManager->pos() + offset);
-    // Map the view's top-left corner to the scene coordinates
     QPointF sceneTopLeft = view->mapToScene(0, 0);
 
-    // Add some padding (e.g., 10px from the top and left)
     health->setPos(sceneTopLeft.x(), sceneTopLeft.y() +40);
     scoreManager->setPos(sceneTopLeft.x(), sceneTopLeft.y());
     LLL->setPos(sceneTopLeft.x() + 650, sceneTopLeft.y());
 }
 
 void Game::quitGame() {
-    // Display a confirmation dialog
     QMessageBox::StandardButton response = QMessageBox::question(
         view, "Quit Game",
         "Are you sure you want to quit the game?",
@@ -371,5 +328,5 @@ void Game::quitGame() {
         mainPlayer->QGraphicsItem::setFocus();
 
         qDebug() << "Quit game cancelled by user.";
-}
+    }
 }

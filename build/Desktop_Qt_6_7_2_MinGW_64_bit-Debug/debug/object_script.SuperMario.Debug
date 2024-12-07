@@ -3,10 +3,12 @@ debug/Score.o
 debug/coin.o
 debug/enemy.o
 debug/game.o
+debug/game_2.o
 debug/main.o
 debug/player.o
 debug/welcomewindow.o
 debug/moc_enemy.o
 debug/moc_game.o
+debug/moc_game_2.o
 debug/moc_player.o
 debug/moc_welcomewindow.o
