@@ -258,7 +258,25 @@ void Game::loadLevel(int level) {
     scene->addItem(LLL);
 
 
-}
+        // Display the level text
+        QGraphicsTextItem* levelText = new QGraphicsTextItem(QString("Level %1").arg(level));
+        levelText->setPos(700, 0);
+        QFont font("Times", 16, QFont::Bold);
+        levelText->setFont(font);
+        levelText->setDefaultTextColor(Qt::red);
+
+        // Add level text to the scene
+        LLL = levelText;
+        scene->addItem(LLL);
+
+        // if (level == 1) {
+        //     staticObstacles.append(new StaticObstacle(scene, 400, 600, "C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
+        //     staticObstacles.append(new StaticObstacle(scene, 700, 450, "C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
+        // } else if (level == 2) {
+        //     staticObstacles.append(new StaticObstacle(scene, 300, 550, "C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
+        // }
+        scene->update();
+    }
 
 void Game::startGame(){
 
