@@ -12,8 +12,10 @@
 #include <QApplication>
 #include <QMessageBox>
 #include "levelcomplete.h"
+#include "heart.h"
+#include "QRandomGenerator"
 
-Game::Game(int l, int r) : score(0), currentLevel(r) {
+Game::Game(int l, int r, int n) : score(n), currentLevel(r) {
     // Create the scene and view
 
     scene = new QGraphicsScene();
@@ -21,6 +23,7 @@ Game::Game(int l, int r) : score(0), currentLevel(r) {
     scene->clear();
     //displaymainwindow();
     level= r;
+    scor= n;
 
     // Set the view's fixed size
     view->setFixedSize(800, 600);
@@ -50,7 +53,7 @@ Game::Game(int l, int r) : score(0), currentLevel(r) {
     lives= l;
     gameTimer = new QTimer(this);
     health = new Health(100, l);
-    scoreManager = new Score();
+    scoreManager = new Score(n);
     mainPlayer = new player();
     mainPlayer->setFlag(QGraphicsItem::ItemIsFocusable);
     mainPlayer->QGraphicsItem::setFocus();
@@ -177,6 +180,13 @@ void Game::initGame() {
     enemies.append(newEnemy2);
     Enemy* newEnemy3 = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, 1990,1250);
     enemies.append(newEnemy3);
+    /*heart* newheart = new heart(scene, scoreManager);
+    newheart->setPos(1600, 550);
+    hearts.append(newheart);*/
+
+    heart* newheart = new heart(scene, scoreManager);
+    newheart->setPos(1250, 500);
+    hearts.append(newheart);
     health->setPos(0, 40);
     scene->update();
 }
@@ -297,10 +307,19 @@ void Game::checkCollisions() {
             scene ->update();
         }
     }
+
+    for (heart* h : hearts) {
+        if (h->checkCollisionWithPlayer(mainPlayer)){
+
+            health->heal(20);
+            scene ->update();
+            hearts.removeAll(h);
+        }
+}
 }
 
 void Game::updateHUD() {
-    qDebug() << "Score:" << score << "Health:" << health->getCurrentHealth();
+    qDebug() << "Score:" << scoreManager->getscore() << "Health:" << health->getCurrentHealth();
 
 }
 
@@ -341,10 +360,10 @@ void Game::updateGame() {
     view->centerOn(mainPlayer);
     checkCollisions();
     updateHUD();
-    if(health->getCurrentHealth() !=0 && mainPlayer->QGraphicsPixmapItem::x()==1995){
+    if(health->getCurrentHealth() !=0 && mainPlayer->QGraphicsPixmapItem::x()>=1995){
         if(level<=4){
             level++;
-            levelcomplete* f= new levelcomplete(level);
+            levelcomplete* f= new levelcomplete(level, scoreManager->getscore());
             f->show();
             delete view;
             delete gameTimer;

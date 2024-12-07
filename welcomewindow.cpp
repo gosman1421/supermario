@@ -19,7 +19,7 @@ welcomewindow::~welcomewindow() {
 
 void welcomewindow::on_pushButtonPLAY_clicked() {
     if (!game) {
-        game = new Game(3, 1);  // Instantiate Game only when needed
+        game = new Game(3, 1, 0);  // Instantiate Game only when needed
     }
     game->startGame();
 

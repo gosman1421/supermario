@@ -6,25 +6,6 @@
 #include "player.h"
 #include "coin.h"
 ///C*oin::Coin(QGraphicsScene *scene, QGraphicsTextItem *scoreDisplay)
-//    : scene(scene), scoreDisplay(scoreDisplay) {
-//    setPixmap(QPixmap("/Users/ghadasherif/Documents/GitHub/assignment-5-ghadasherif/Code_lib/coin-1.jpeg"));
-//    scene->addItem(this);
-//}
-
-//void Coin::checkCollisionWithPlayer(QGraphicsPixmapItem *player) {
-//    if (collidesWithItem(player)) {
-//        collectCoin();
-//    }
-//}
-
-//void Coin::collectCoin() {
-//    scene->removeItem(this);
-//    delete this;
-
-//    score.increasescore();
-//    scoreDisplay->setPlainText(QString("Score: %1").arg(scoreDisplay->getscore()));
-//    //scoreDisplay->setPlainText(QString("Score: %1").arg(score));
-//}
 
 
 //////The main function for the coins
@@ -38,7 +19,7 @@
 
 coin::coin(QGraphicsScene *scene, Score *scoreManager)
     : scene(scene), scoreManager(scoreManager) {
-    setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/clipart4500979.png"));
+    setPixmap(QPixmap("C:/Users/AUC/Documents/GitHub/supermario/clipart4500979.png"));
     setScale(0.05);
     scene->addItem(this);
 }
@@ -53,7 +34,4 @@ bool coin::checkCollisionWithPlayer(player *mainplayer) {
 
 void coin::collectCoin() {
     scene->removeItem(this);
-    //delete this;
-
-    //scoreManager->increasescore();
-}
+    }

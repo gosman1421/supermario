@@ -1,9 +1,9 @@
 #include "Score.h"
 #include <QFont>
 #include <QGraphicsScene>
-Score::Score(QGraphicsItem * parent):QGraphicsTextItem(parent)
+Score::Score(int s, QGraphicsItem * parent):QGraphicsTextItem(parent)
 {
-    score = 0;
+    score = s;
     setPlainText(QString("Score: ") + QString::number(score));
     setDefaultTextColor(Qt::yellow);
     setFont(QFont("Times",16));

@@ -14,6 +14,7 @@ SOURCES += \
     coin.cpp \
     enemy.cpp \
     game.cpp \
+    heart.cpp \
     levelcomplete.cpp \
     main.cpp \
     player.cpp \
@@ -27,6 +28,7 @@ HEADERS += \
     coin.h \
     enemy.h \
     game.h \
+    heart.h \
     levelcomplete.h \
     player.h \
     updatewindow.h \

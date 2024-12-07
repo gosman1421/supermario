@@ -22,7 +22,7 @@ void updatewindow::on_pushButton_clicked()
     {
 
         if(!game){
-            game = new Game(mas, lev);
+            game = new Game(mas, lev, 0);
             game->startGame();
         }
 
