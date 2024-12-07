@@ -5,7 +5,7 @@ Score::Score(int s, QGraphicsItem * parent):QGraphicsTextItem(parent)
 {
     score = s;
     setPlainText(QString("Score: ") + QString::number(score));
-    setDefaultTextColor(Qt::yellow);
+    setDefaultTextColor(Qt::black);
     setFont(QFont("Times",16));
     setPos(0,0);
 }
@@ -13,7 +13,7 @@ Score::Score(int s, QGraphicsItem * parent):QGraphicsTextItem(parent)
 
 void Score::increasescore()
 {
-    score = score + 30;
+    score = score + 10;
     setPlainText(QString("Score: ") + QString::number(score));
 }
 
