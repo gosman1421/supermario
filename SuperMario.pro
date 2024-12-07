@@ -14,8 +14,10 @@ SOURCES += \
     coin.cpp \
     enemy.cpp \
     game.cpp \
+    levelcomplete.cpp \
     main.cpp \
     player.cpp \
+    updatewindow.cpp \
     welcomewindow.cpp
 
 HEADERS += \
@@ -25,7 +27,9 @@ HEADERS += \
     coin.h \
     enemy.h \
     game.h \
+    levelcomplete.h \
     player.h \
+    updatewindow.h \
     welcomewindow.h
 
 # Default rules for deployment.
@@ -34,4 +38,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 FORMS += \
+    levelcomplete.ui \
+    updatewindow.ui \
     welcomewindow.ui

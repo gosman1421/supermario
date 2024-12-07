@@ -19,9 +19,8 @@ welcomewindow::~welcomewindow() {
 
 void welcomewindow::on_pushButtonPLAY_clicked() {
     if (!game) {
-        game = new Game();  // Instantiate Game only when needed
+        game = new Game(3, 1);  // Instantiate Game only when needed
     }
-    game->updateGame();
     game->startGame();
 
     this->hide();  // Hide welcome window when game starts

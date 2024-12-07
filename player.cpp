@@ -75,24 +75,6 @@ bool player::isAlive() const {
     return lives > 0;
 }
 
-// void player::keyPressEvent(QKeyEvent* event) {
-
-//     if (event->key() == Qt::Key_Left) {
-//         setPos(QGraphicsPixmapItem::x() - 10, QGraphicsPixmapItem::y());
-//     } else if (event->key() == Qt::Key_Right) {
-//         setPos(QGraphicsPixmapItem::x() + 10, QGraphicsPixmapItem::y());
-//     } else if (event->key() == Qt::Key_Up && !isjumping) {
-//         // Jump upward
-//         setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() - 60);
-//         isjumping = true;
-//         QTimer::singleShot(500, this, [this]() {
-//             moveDown();
-//             isjumping = false;
-//         });
-//     }
-//     scene->update();
-// }
-
 void player::keyPressEvent(QKeyEvent* event) {
 
     activeKeys.insert(event->key());
@@ -145,12 +127,3 @@ void player::handleMovement() {
     setPos(x, y); // Update position
     scene->update();
 }
-
-//player::player(QWidget *parent)
-//    : QMainWindow(parent)
-//{
-//}
-
-//player::~player()
-//{
-//}

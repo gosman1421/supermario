@@ -3,10 +3,14 @@ release/Score.o
 release/coin.o
 release/enemy.o
 release/game.o
+release/levelcomplete.o
 release/main.o
 release/player.o
+release/updatewindow.o
 release/welcomewindow.o
 release/moc_enemy.o
 release/moc_game.o
+release/moc_levelcomplete.o
 release/moc_player.o
+release/moc_updatewindow.o
 release/moc_welcomewindow.o

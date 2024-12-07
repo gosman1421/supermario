@@ -27,11 +27,14 @@ private:
     int currentLevel;
     bool shield;
 
+
     void loadLevel(int level);
     void initGame();
     //QGraphicsTextItem* levelText;
 public:
-    Game();
+    Game(int l, int r);
+    int lives;
+    int level;
     ~Game();
 
 

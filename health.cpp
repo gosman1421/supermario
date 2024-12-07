@@ -91,7 +91,8 @@ void Health::takeDamage(int damage) {
 
 void Health::heal(int amount) {
     currentHealth += amount;
-    if (currentHealth > maxHealth) {
+    if (currentHealth
+        > maxHealth) {
         currentHealth = maxHealth;
     }
     updateDisplay();
@@ -127,7 +128,7 @@ bool Health::hasLivesLeft() const {
 }
 
 void Health::resetLives() {
-    currentLives = maxLives;
+    currentLives = currentLives-1;
     updateDisplay();
 }
 
@@ -141,7 +142,7 @@ int Health::getCurrentLives() const {
 
 void Health::updateDisplay() {
     // Update the displayed text for health and lives
-    setPlainText(QString("Health: %1/%2\nLives: %3/%4")
+    setPlainText(QString("Health: %1/%2\nLives Left: %3")
                      .arg(currentHealth)
                      .arg(maxHealth)
                      .arg(currentLives)
