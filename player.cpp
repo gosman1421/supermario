@@ -77,10 +77,10 @@ void player::keyPressEvent(QKeyEvent* event) {
     int y = QGraphicsPixmapItem::y();
 
     if (activeKeys.contains(Qt::Key_Left)) {
-        x -= 10;
+        x -= speed;
     }
     if (activeKeys.contains(Qt::Key_Right)) {
-        x += 10;
+        x += speed;
     }
     if (activeKeys.contains(Qt::Key_Up) && !isjumping) {
         y -= 60;
