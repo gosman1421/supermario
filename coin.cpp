@@ -38,7 +38,7 @@
 
 coin::coin(QGraphicsScene *scene, Score *scoreManager)
     : scene(scene), scoreManager(scoreManager) {
-    setPixmap(QPixmap("C:/Users/AUC/Documents/GitHub/supermario/clipart4500979.png"));
+    setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/clipart4500979.png"));
     setScale(0.05);
     scene->addItem(this);
 }

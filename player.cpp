@@ -5,15 +5,9 @@
 #include <QDebug>
 #include <QApplication>
 #include <QGraphicsView>
-//player::player(QWidget *parent)
-//    : QMainWindow(parent)
-//{
-//}
-
-player::player( QGraphicsItem* parent, QGraphicsScene *scene1)
-    : QGraphicsPixmapItem(parent), score(0), lives(3), coins(0), speed(5), hasTemporaryAbility(false), scene(scene1), isjumping(false){
-    // Set the player's image ("/Users/ghadasherif/Desktop/CS2/Assignment 6/cs2 assignment 4/cs2 assignment 4/player.png")
-    setPixmap(QPixmap("C:/Users/AUC/Documents/GitHub/supermario/PngItem_1478513.png"));
+player::player(QGraphicsItem* parent, QGraphicsScene *scene1)
+    : QGraphicsPixmapItem(parent), score(0), lives(3), coins(0), speed(5), hasTemporaryAbility(false), scene(scene1), isjumping(false) {
+    setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/PngItem_1478513.png"));
     setScale(0.1);
     setPos(0, 525);
     setFlag(QGraphicsItem::ItemIsFocusable);
