@@ -246,12 +246,12 @@ void Game::initGame() {
         LLL = levelText;
         scene->addItem(LLL);
 
-        if (level == 1) {
-            staticObstacles.append(new StaticObstacle(scene, 400, 600, "C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
-            staticObstacles.append(new StaticObstacle(scene, 700, 450, "C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
-        } else if (level == 2) {
-            staticObstacles.append(new StaticObstacle(scene, 300, 550, "C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
-        }
+        // if (level == 1) {
+        //     staticObstacles.append(new StaticObstacle(scene, 400, 600, "C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
+        //     staticObstacles.append(new StaticObstacle(scene, 700, 450, "C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
+        // } else if (level == 2) {
+        //     staticObstacles.append(new StaticObstacle(scene, 300, 550, "C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
+        // }
         scene->update();
     }
 
