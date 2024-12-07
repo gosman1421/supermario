@@ -14,8 +14,7 @@
 #include "levelcomplete.h"
 #include "heart.h"
 #include "QRandomGenerator"
-#include <QMediaPlayer>
-#include <QMediaPlaylist>
+
 
 Game::Game(int l, int r, int n) : score(n), currentLevel(r) {
     // Create the scene and view
@@ -34,6 +33,7 @@ Game::Game(int l, int r, int n) : score(n), currentLevel(r) {
 
     // Load the background image
     QPixmap backgroundPixmap("C:/Users/AUC/Downloads/background.jpg");
+
 
     // Scale the background to fit the scene's size
     QPixmap scaledPixmap = backgroundPixmap.scaled(view->sceneRect().size().toSize(),
