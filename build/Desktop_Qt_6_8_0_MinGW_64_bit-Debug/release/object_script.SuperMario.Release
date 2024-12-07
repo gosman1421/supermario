@@ -1,5 +1,6 @@
 release/Health.o
 release/Score.o
+release/StaticObstacle.o
 release/coin.o
 release/enemy.o
 release/game.o

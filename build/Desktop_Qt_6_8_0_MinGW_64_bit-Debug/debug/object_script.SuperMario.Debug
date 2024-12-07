@@ -1,5 +1,6 @@
 debug/Health.o
 debug/Score.o
+debug/StaticObstacle.o
 debug/coin.o
 debug/enemy.o
 debug/game.o

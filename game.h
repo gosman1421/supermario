@@ -11,6 +11,7 @@
 #include "enemy.h"
 #include "Score.h"
 #include "GameLevel.h"
+#include "StaticObstacle.h"
 class Game: public QObject {
     Q_OBJECT
 
@@ -31,14 +32,13 @@ private:
     void loadLevel(int level);
     void initGame();
     //QGraphicsTextItem* levelText;
+    QGraphicsPixmapItem* finishLine;
+    QVector<StaticObstacle*> staticObstacles;
 public:
     Game(int l, int r);
     int lives;
     int level;
     ~Game();
-
-
-
     void displaymainwindow();
     void startGame();
     void restartGame();
