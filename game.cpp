@@ -15,7 +15,7 @@
 #include "heart.h"
 #include "QRandomGenerator"
 #include <QMediaPlayer>
-#include <QMediaPlaylist>
+// #include <QMediaPlaylist>
 
 Game::Game(int l, int r, int n) : score(n), currentLevel(r) {
     // Create the scene and view
@@ -33,7 +33,7 @@ Game::Game(int l, int r, int n) : score(n), currentLevel(r) {
 
 
     // Load the background image
-    QPixmap backgroundPixmap("C:/Users/AUC/Downloads/background.jpg");
+    QPixmap backgroundPixmap("C:/Users/Dell/OneDrive/Desktop/Scene.png");
 
     // Scale the background to fit the scene's size
     QPixmap scaledPixmap = backgroundPixmap.scaled(view->sceneRect().size().toSize(),
@@ -122,14 +122,14 @@ void Game::initGame() {
     updateHUD();
     if(currentLevel== 1){
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 20; i++) {
         coin* newCoin = new coin(scene, scoreManager);
         if(i%2==0){
-        newCoin->setPos(i * 150 + 100, 550);
+        newCoin->setPos(i * 250 + 100, 550);
         coins.append(newCoin);
     }
         else{
-            newCoin->setPos(i * 250 + 200, 500);
+            newCoin->setPos(i * 250 + 100, 500);
             coins.append(newCoin);
     }
 
@@ -187,7 +187,7 @@ void Game::initGame() {
     hearts.append(newheart);*/
 
     heart* newheart = new heart(scene, scoreManager);
-    newheart->setPos(1250, 500);
+    newheart->setPos(1250, 550);
     hearts.append(newheart);
     health->setPos(0, 40);
     scene->update();
@@ -207,15 +207,18 @@ void Game::initGame() {
             }
 
 
-        Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, 400, 0);
+        Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 20, 560, 400, 0);
         enemies.append(newEnemy);
-        Enemy* newEnemy2 = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, 800, 450);
+        Enemy* newEnemy2 = new Enemy(scene, Enemy::Moving, scoreManager, 15, 560, 800, 450);
         enemies.append(newEnemy2);
-        Enemy* newEnemy3 = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, 1300, 850);
+        Enemy* newEnemy3 = new Enemy(scene, Enemy::Moving, scoreManager, 15, 560, 1300, 850);
         enemies.append(newEnemy3);
-        Enemy* newEnemy4 = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, 1900, 1350);
+        Enemy* newEnemy4 = new Enemy(scene, Enemy::Moving, scoreManager, 20, 560, 1900, 1350);
         enemies.append(newEnemy4);
         health->setPos(0, 40);
+        heart* newheart = new heart(scene, scoreManager);
+        newheart->setPos(1000, 550);
+        hearts.append(newheart);
         scene->update();
     }
     }
@@ -233,17 +236,25 @@ void Game::initGame() {
             }
 
 
-    Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, 350, 0);
+    Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 25, 560, 350, 0);
     enemies.append(newEnemy);
-    Enemy* newEnemy2 = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, 800, 350);
+    Enemy* newEnemy2 = new Enemy(scene, Enemy::Moving, scoreManager, 20, 560, 800, 350);
     enemies.append(newEnemy2);
-    Enemy* newEnemy3 = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, 1200, 850);
+    Enemy* newEnemy3 = new Enemy(scene, Enemy::Moving, scoreManager, 25, 560, 1200, 850);
     enemies.append(newEnemy3);
-    Enemy* newEnemy4 = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, 1650, 1300);
+    Enemy* newEnemy4 = new Enemy(scene, Enemy::Moving, scoreManager, 25, 560, 1650, 1300);
     enemies.append(newEnemy4);
-    Enemy* newEnemy5 = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, 1993, 1700);
+    Enemy* newEnemy5 = new Enemy(scene, Enemy::Moving, scoreManager, 20, 560, 1993, 1700);
     enemies.append(newEnemy5);
+    Enemy* newEnemy6 = new Enemy(scene, Enemy::Moving, scoreManager, 20, 560, 1993, 1700);
+    enemies.append(newEnemy6);
     health->setPos(0, 40);
+    heart* newheart = new heart(scene, scoreManager);
+    newheart->setPos(1250, 550);
+    hearts.append(newheart);
+    heart* newheart2 = new heart(scene, scoreManager);
+    newheart2->setPos(1000, 500);
+    hearts.append(newheart2);
     scene->update();
 }
 }
