@@ -6,8 +6,8 @@
 #include <QApplication>
 #include <QGraphicsView>
 player::player(QGraphicsItem* parent, QGraphicsScene *scene1)
-    : QGraphicsPixmapItem(parent), score(0), lives(3), coins(0), speed(5), hasTemporaryAbility(false), scene(scene1), isjumping(false) {
-    setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/PngItem_1478513.png"));
+    : QGraphicsPixmapItem(parent), score(0), lives(3), coins(0), speed(10), hasTemporaryAbility(false), scene(scene1), isjumping(false) {
+    setPixmap(QPixmap("C:/Users/AUC/Documents/GitHub/supermario/PngItem_1478513.png"));
     setScale(0.1);
     setPos(0, 525);
     setFlag(QGraphicsItem::ItemIsFocusable);

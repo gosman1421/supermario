@@ -12,6 +12,7 @@
 #include "Score.h"
 #include "GameLevel.h"
 #include "StaticObstacle.h"
+#include "heart.h"
 class Game: public QObject {
     Q_OBJECT
 
@@ -24,6 +25,7 @@ private:
     player* mainPlayer;
     QList<coin*> coins;
     QList<Enemy*> enemies;
+    QList<heart*> hearts;
     int score;
     int currentLevel;
     bool shield;
@@ -35,9 +37,10 @@ private:
     QGraphicsPixmapItem* finishLine;
     QVector<StaticObstacle*> staticObstacles;
 public:
-    Game(int l, int r);
+    Game(int l, int r, int n);
     int lives;
     int level;
+    int scor;
     ~Game();
     void displaymainwindow();
     void startGame();

@@ -90,10 +90,12 @@ void Health::takeDamage(int damage) {
 }
 
 void Health::heal(int amount) {
+
     currentHealth += amount;
     if (currentHealth
         > maxHealth) {
         currentHealth = maxHealth;
+
     }
     updateDisplay();
 }

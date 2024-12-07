@@ -2,12 +2,13 @@
 #include "ui_levelcomplete.h"
 #include "QMessageBox"
 
-levelcomplete::levelcomplete(int x, QWidget *parent)
+levelcomplete::levelcomplete(int x,int y, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::levelcomplete), game(nullptr)
 {
     ui->setupUi(this);
     h =x;
+    u= y;
 }
 
 levelcomplete::~levelcomplete()
@@ -19,7 +20,7 @@ levelcomplete::~levelcomplete()
 void levelcomplete::on_pushButton_clicked()
 {
     if(!game){
-        game = new Game(3, h);
+        game = new Game(3, h, u);
         game->startGame();
     }
     this->hide();

@@ -13,7 +13,7 @@ class levelcomplete : public QDialog
     Q_OBJECT
 
 public:
-    explicit levelcomplete(int x, QWidget *parent = nullptr);
+    explicit levelcomplete(int x, int y, QWidget *parent = nullptr);
     ~levelcomplete();
 
 private slots:
@@ -25,6 +25,7 @@ private:
     Ui::levelcomplete *ui;
     Game *game;
     int h;
+    int u;
 };
 
 #endif // LEVELCOMPLETE_H

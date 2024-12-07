@@ -3,6 +3,7 @@ release/Score.o
 release/coin.o
 release/enemy.o
 release/game.o
+release/heart.o
 release/levelcomplete.o
 release/main.o
 release/player.o
