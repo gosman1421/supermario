@@ -35,6 +35,7 @@ Game::Game(int l, int r, int n) : score(n), currentLevel(r) {
     // Load the background image
     QPixmap backgroundPixmap("C:/Users/Dell/OneDrive/Desktop/Scene.png");
 
+
     // Scale the background to fit the scene's size
     QPixmap scaledPixmap = backgroundPixmap.scaled(view->sceneRect().size().toSize(),
                                                    Qt::KeepAspectRatioByExpanding,
