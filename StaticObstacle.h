@@ -1,10 +1,12 @@
 #ifndef STATICOBSTACLE_H
 #define STATICOBSTACLE_H
 
-class StaticObstacle
-{
+#include <QGraphicsPixmapItem>
+#include <QGraphicsScene>
+
+class StaticObstacle : public QGraphicsPixmapItem {
 public:
-    StaticObstacle();
+    StaticObstacle(QGraphicsScene* scene, int x, int y, const QString& imagePath);
 };
 
-#endif // STATICOBSTACLE_H
+#endif
