@@ -14,6 +14,8 @@
 #include "levelcomplete.h"
 #include "heart.h"
 #include "QRandomGenerator"
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 Game::Game(int l, int r, int n) : score(n), currentLevel(r) {
     // Create the scene and view
@@ -31,7 +33,7 @@ Game::Game(int l, int r, int n) : score(n), currentLevel(r) {
 
 
     // Load the background image
-    QPixmap backgroundPixmap("C:/Users/Dell/OneDrive/Desktop/Scene.png");
+    QPixmap backgroundPixmap("C:/Users/AUC/Downloads/background.jpg");
 
     // Scale the background to fit the scene's size
     QPixmap scaledPixmap = backgroundPixmap.scaled(view->sceneRect().size().toSize(),
@@ -127,7 +129,7 @@ void Game::initGame() {
         coins.append(newCoin);
     }
         else{
-            newCoin->setPos(i * 50 + 200, 500);
+            newCoin->setPos(i * 250 + 200, 500);
             coins.append(newCoin);
     }
 
@@ -152,9 +154,9 @@ void Game::initGame() {
             }
 
 
-        Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 25, 560, 800, 0);
+        Enemy* newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 15, 560, 800, 0);
         enemies.append(newEnemy);
-        Enemy* newEnemy2 = new Enemy(scene, Enemy::Moving, scoreManager, 20, 560, 1990, 900);
+        Enemy* newEnemy2 = new Enemy(scene, Enemy::Moving, scoreManager, 15, 560, 1990, 900);
         enemies.append(newEnemy2);
         health->setPos(0, 40);
         scene->update();
@@ -256,27 +258,7 @@ void Game::loadLevel(int level) {
     //scene->addItem(levelText);
     LLL = levelText;
     scene->addItem(LLL);
-
-
-        // Display the level text
-        // QGraphicsTextItem* levelText = new QGraphicsTextItem(QString("Level %1").arg(level));
-        // levelText->setPos(700, 0);
-        // QFont font("Times", 16, QFont::Bold);
-        // levelText->setFont(font);
-        // levelText->setDefaultTextColor(Qt::red);
-
-        // Add level text to the scene
-        // LLL = levelText;
-        // scene->addItem(LLL);
-
-        // if (level == 1) {
-        //     staticObstacles.append(new StaticObstacle(scene, 400, 600, "C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
-        //     staticObstacles.append(new StaticObstacle(scene, 700, 450, "C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
-        // } else if (level == 2) {
-        //     staticObstacles.append(new StaticObstacle(scene, 300, 550, "C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
-        // }
-        // scene->update();
-    }
+}
 
 void Game::startGame(){
 
