@@ -7,7 +7,7 @@
 #include <QGraphicsView>
 player::player(QGraphicsItem* parent, QGraphicsScene *scene1)
     : QGraphicsPixmapItem(parent), score(0), lives(3), coins(0), speed(5), hasTemporaryAbility(false), scene(scene1), isjumping(false) {
-    setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/PngItem_1478513.png"));
+    setPixmap(QPixmap("C:/Users/AUC/Documents/GitHub/supermario/PngItem_1478513.png"));
     setScale(0.1);
     setPos(0, 525);
     setFlag(QGraphicsItem::ItemIsFocusable);
@@ -97,13 +97,13 @@ void player::moveRight() {
 // Handle jumping logic
 void player::jump() {
     isjumping = true;
-    setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() - 60);  // Move up
+    setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() - 200);  // Move up
     QTimer::singleShot(500, this, &player::moveDown);  // Move back down after 500 ms
 }
 
 // Move player back down after jump
 void player::moveDown() {
-    setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() + 60);  // Move back down
+    setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() + 200);  // Move back down
     isjumping = false;
 
     if (QGraphicsPixmapItem::y() > 600) { // Adjust based on screen size

@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     Health.cpp \
     Score.cpp \
+    StaticObstacle.cpp \
     coin.cpp \
     enemy.cpp \
     game.cpp \
@@ -23,6 +24,7 @@ HEADERS += \
     GameLevel.h \
     Health.h \
     Score.h \
+    StaticObstacle.h \
     coin.h \
     enemy.h \
     game.h \

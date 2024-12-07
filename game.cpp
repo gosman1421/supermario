@@ -1,3 +1,4 @@
+#include "StaticObstacle.h"
 #include "game.h"
 #include "welcomewindow.h"
 #include <QKeyEvent>
@@ -22,7 +23,9 @@ Game::Game() : score(0), currentLevel(1) {
     view->setFixedSize(800, 600);
     view->setSceneRect(0, 0, 2000, 600);
 
-    QPixmap backgroundPixmap("C:/Users/Dell/OneDrive/Desktop/Scene.png");
+    // Load the background image
+    QPixmap backgroundPixmap("C:/Users/AUC/Documents/GitHub/supermario/pixel-art-sky-background-with-clouds-cloudy-blue-sky-for-8bit-game-on-white-background-vector.jpg");
+
 
     QPixmap scaledPixmap = backgroundPixmap.scaled(view->sceneRect().size().toSize(),
                                                    Qt::KeepAspectRatioByExpanding,
@@ -76,7 +79,7 @@ void Game::simulateMouseClick() {
 // Game::Game(): score(0), currentLevel(1) {
 //     scene = new QGraphicsScene();
 //     view = new QGraphicsView(scene);
-//     view->setBackgroundBrush(QBrush(QImage("C:/Users/Dell/OneDrive/Desktop/Scene.png")));
+//     view->setBackgroundBrush(QBrush(QImage("C:/Users/AUC/Documents/GitHub/supermario/Scene.png")));
 //     view->setFixedSize(800, 600);
 //     view->show();
 //     gameTimer = new QTimer(this);
@@ -102,7 +105,10 @@ Game::~Game() {
 }
 
 void Game::initGame() {
+    // Load the current level
     loadLevel(currentLevel);
+
+    // Update the HUD (e.g., health, score)
     updateHUD();
 
     for (int i = 0; i < 10; i++) {
@@ -121,7 +127,10 @@ void Game::initGame() {
     finishLine->setScale(0.5);
     scene->addItem(finishLine);
 
+    // Position the health display
     health->setPos(0, 40);
+
+    // Update the scene to reflect all added elements
     scene->update();
     this->finishLine = finishLine;
 }
@@ -136,6 +145,38 @@ void Game::loadLevel(int level) {
     LLL = levelText;
     scene->addItem(LLL);
 }
+
+QGraphicsTextItem* LLL;
+    void Game::loadLevel(int level) {
+        // Clear any existing static obstacles from the scene
+        for (StaticObstacle* obstacle : staticObstacles) {
+            scene->removeItem(obstacle);
+            delete obstacle;
+        }
+        staticObstacles.clear();
+
+        // Display the level text
+        QGraphicsTextItem* levelText = new QGraphicsTextItem(QString("Level %1").arg(level));
+        levelText->setPos(700, 0);
+        QFont font("Times", 16, QFont::Bold);
+        levelText->setFont(font);
+        levelText->setDefaultTextColor(Qt::red);
+
+        // Add level text to the scene
+        LLL = levelText;
+        scene->addItem(LLL);
+
+        // Add static obstacles specific to each level
+        if (level == 1) {
+            staticObstacles.append(new StaticObstacle(scene, 400, 500, "C:/Users/AUC/Documents/GitHub/supermario/obstacle1.png"));
+            staticObstacles.append(new StaticObstacle(scene, 700, 450, "C:/Users/AUC/Documents/GitHub/supermario/obstacle2.png"));
+        } else if (level == 2) {
+            staticObstacles.append(new StaticObstacle(scene, 300, 550, "C:/Users/AUC/Documents/GitHub/supermario/level2_obstacle.png"));
+        }
+
+        // Update the scene to reflect new elements
+        scene->update();
+    }
 
 void Game::startGame(){
     gameTimer->start(16);
@@ -185,27 +226,43 @@ void Game::nextLevel() {
 }
 
 void Game::checkCollisions() {
+    // Check player collision with coins
     for (coin* c : coins) {
-        if (c->checkCollisionWithPlayer(mainPlayer)){
-            //delete c;
-
-            scoreManager ->increasescore();
-            scene ->update();
+        if (c->checkCollisionWithPlayer(mainPlayer)) {
+            // Increase the score when a coin is collected
+            scoreManager->increasescore();
+            scene->update();
             coins.removeAll(c);
+            delete c; // Safely delete the coin
         }
     }
+
+    // Check player collision with enemies
     for (Enemy* e : enemies) {
-        if (e->checkCollisionWithPlayer(mainPlayer) && !shield){
+        if (e->checkCollisionWithPlayer(mainPlayer) && !shield) {
+            // Reduce health on collision with an enemy
             health->takeDamage(20);
             shield = true;
+
+            // Temporarily activate shield to prevent repeated damage
             QTimer::singleShot(1000, this, [this]() {
                 shield = false;
             });
-            scene ->update();
+            scene->update();
+        }
+    }
 
+    // Check player collision with static obstacles
+    for (StaticObstacle* obstacle : staticObstacles) {
+        if (mainPlayer->collidesWithItem(obstacle)) {
+            // Example: Push player back slightly and log the collision
+            mainPlayer->setPos(mainPlayer->x() - 10, mainPlayer->y());
+            qDebug() << "Player collided with a static obstacle!";
+            health->takeDamage(10); // Reduce health (optional)
         }
     }
 }
+
 /*void Game::displaymainwindow(){
     QGraphicsTextItem* titletext= new QGraphicsTextItem(QString( "Bassel Shoeib"));
         QFont titleFont("Mario", 50);
