@@ -3,6 +3,7 @@ debug/Score.o
 debug/coin.o
 debug/enemy.o
 debug/game.o
+debug/heart.o
 debug/levelcomplete.o
 debug/main.o
 debug/player.o
