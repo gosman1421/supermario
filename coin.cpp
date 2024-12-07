@@ -35,15 +35,6 @@
 ////    coins.append(coin);
 ////}
 
-//QTimer *timer = new QTimer();
-//QObject::connect(timer, &QTimer::timeout, [=]() {
-//    for (Coin *coin : coins) {
-//        if (coin) {
-//            coin->checkCollisionWithPlayer(player);
-//        }
-//    }
-//});
-//timer->start(50);*/
 
 coin::coin(QGraphicsScene *scene, Score *scoreManager)
     : scene(scene), scoreManager(scoreManager) {

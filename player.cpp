@@ -11,20 +11,24 @@ player::player(QGraphicsItem* parent, QGraphicsScene *scene1)
     setScale(0.1);
     setPos(0, 525);
     setFlag(QGraphicsItem::ItemIsFocusable);
-    QGraphicsItem::setFocus();
-
+    this->QGraphicsItem::setFocus();
+    //this->setFocus();
     movementTimer = new QTimer(this);
     connect(movementTimer, &QTimer::timeout, this, &player::handleMovement);
     movementTimer->start(30);
-
+    setFlag(QGraphicsItem::ItemIsFocusable);
+    QGraphicsItem::setFocus();
     QApplication::instance()->installEventFilter(this);
-}
 
+}
+//"/Users/ghadasherif/Desktop/CS2/Assignment 6/cs2 assignment 4/cs2 assignment 4/player.png"
+// Getters
 int player::getScore() const { return score; }
 int player::getLives() const { return lives; }
 int player::getCoins() const { return coins; }
 bool player::hasAbility() const { return hasTemporaryAbility; }
 
+// Setters
 void player::setLives(int newLives) {
     lives = newLives;
     emit lifeChanged(lives); // Notify the UI or game logic
@@ -34,7 +38,7 @@ void player::addScore(int points) {
     score += points;
     emit scoreChanged(score);
 }
-
+//
 void player::addCoin() {
     coins += 1;
     emit coinsChanged(coins);
@@ -52,6 +56,7 @@ void player::deactivateTemporaryAbility() {
     hasTemporaryAbility = false;
 }
 
+// Reduce player's life
 void player::reduceLife() {
     if (lives > 0) {
         lives -= 1;
@@ -59,75 +64,60 @@ void player::reduceLife() {
     }
 }
 
+// Check if the player is alive
 bool player::isAlive() const {
     return lives > 0;
 }
 
-// Key press event to handle movement and jumping
 void player::keyPressEvent(QKeyEvent* event) {
+
     activeKeys.insert(event->key());
 
+    int x = QGraphicsPixmapItem::x();
+    int y = QGraphicsPixmapItem::y();
+
     if (activeKeys.contains(Qt::Key_Left)) {
-        moveLeft();
+        x -= 10;
     }
     if (activeKeys.contains(Qt::Key_Right)) {
-        moveRight();
+        x += 10;
     }
     if (activeKeys.contains(Qt::Key_Up) && !isjumping) {
-        jump();
+        y -= 60;
+        isjumping = true;
+        QTimer::singleShot(500, this, [this]() {
+            moveDown();
+            isjumping = false;
+        });
     }
 
+    setPos(x, y); // Update position
     scene->update();
 }
 
 void player::keyReleaseEvent(QKeyEvent* event) {
     activeKeys.remove(event->key());
+
 }
 
-// Move player left
-void player::moveLeft() {
-    setPos(QGraphicsPixmapItem::x() - speed, QGraphicsPixmapItem::y());
-}
 
-// Move player right
-void player::moveRight() {
-    setPos(QGraphicsPixmapItem::x() + speed, QGraphicsPixmapItem::y());
-}
-
-// Handle jumping logic
-void player::jump() {
-    isjumping = true;
-    setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() - 200);  // Move up
-    QTimer::singleShot(500, this, &player::moveDown);  // Move back down after 500 ms
-}
-
-// Move player back down after jump
+// Function to move the player back down
 void player::moveDown() {
-    setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() + 200);  // Move back down
-    isjumping = false;
-
-    if (QGraphicsPixmapItem::y() > 600) { // Adjust based on screen size
-        reduceLife();
-        if (!isAlive()) {
-            emit gameOver();  // Notify game of Game Over
-        }
-    }
-
+    setPos(QGraphicsPixmapItem::x(), QGraphicsPixmapItem::y() + 60); // Move back down
     scene->update();
 }
 
-// Function to handle movement for the player
 void player::handleMovement() {
     int x = QGraphicsPixmapItem::x();
     int y = QGraphicsPixmapItem::y();
 
     if (activeKeys.contains(Qt::Key_Left)) {
-        x -= speed;  // Move left
+        x -= speed; // Adjust speed as needed
     }
     if (activeKeys.contains(Qt::Key_Right)) {
-        x += speed;  // Move right
+        x += speed;
     }
 
-    setPos(x, y);
+    setPos(x, y); // Update position
     scene->update();
 }

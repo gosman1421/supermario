@@ -28,13 +28,16 @@ private:
     int currentLevel;
     bool shield;
 
+
     void loadLevel(int level);
     void initGame();
     //QGraphicsTextItem* levelText;
     QGraphicsPixmapItem* finishLine;
     QVector<StaticObstacle*> staticObstacles;
 public:
-    Game();
+    Game(int l, int r);
+    int lives;
+    int level;
     ~Game();
     void displaymainwindow();
     void startGame();

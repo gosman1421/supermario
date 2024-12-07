@@ -4,10 +4,14 @@ debug/StaticObstacle.o
 debug/coin.o
 debug/enemy.o
 debug/game.o
+debug/levelcomplete.o
 debug/main.o
 debug/player.o
+debug/updatewindow.o
 debug/welcomewindow.o
 debug/moc_enemy.o
 debug/moc_game.o
+debug/moc_levelcomplete.o
 debug/moc_player.o
+debug/moc_updatewindow.o
 debug/moc_welcomewindow.o

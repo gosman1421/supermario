@@ -11,25 +11,25 @@ CONFIG += c++17
 SOURCES += \
     Health.cpp \
     Score.cpp \
-    StaticObstacle.cpp \
     coin.cpp \
     enemy.cpp \
     game.cpp \
-    game_2.cpp \
+    levelcomplete.cpp \
     main.cpp \
     player.cpp \
+    updatewindow.cpp \
     welcomewindow.cpp
 
 HEADERS += \
     GameLevel.h \
     Health.h \
     Score.h \
-    StaticObstacle.h \
     coin.h \
     enemy.h \
     game.h \
-    game_2.h \
+    levelcomplete.h \
     player.h \
+    updatewindow.h \
     welcomewindow.h
 
 # Default rules for deployment.
@@ -38,4 +38,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 FORMS += \
+    levelcomplete.ui \
+    updatewindow.ui \
     welcomewindow.ui
