@@ -8,7 +8,7 @@
 Enemy::Enemy(QGraphicsScene *scene, ObstacleType type, Score *newscore, int speed, int h, int start, int end)
     : scene(scene), type(type), speed(speed), setscore(newscore), height(h), starting(start), ending(end){
 
-    setPixmap(QPixmap("C:/Users/AUC/Documents/GitHub/supermario/super-mario-bros-goomba-8-bit-0c7e43b6db7b44d66a6308e888bbc222.png"));
+    setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/super-mario-bros-goomba-8-bit-0c7e43b6db7b44d66a6308e888bbc222.png"));
     setScale(0.05);
     scene->addItem(this);
     setPos(starting, height);

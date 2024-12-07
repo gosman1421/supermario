@@ -24,7 +24,7 @@ Game::Game() : score(0), currentLevel(1) {
     view->setSceneRect(0, 0, 2000, 600);
 
     // Load the background image
-    QPixmap backgroundPixmap("C:/Users/AUC/Documents/GitHub/supermario/pixel-art-sky-background-with-clouds-cloudy-blue-sky-for-8bit-game-on-white-background-vector.jpg");
+    QPixmap backgroundPixmap("C:/Users/Dell/OneDrive/Desktop/Scene.png");
 
 
     QPixmap scaledPixmap = backgroundPixmap.scaled(view->sceneRect().size().toSize(),
@@ -134,19 +134,19 @@ void Game::initGame() {
     scene->update();
     this->finishLine = finishLine;
 }
-QGraphicsTextItem* LLL;
-void Game::loadLevel(int level) {
-    QGraphicsTextItem* levelText = new QGraphicsTextItem(QString("Level %1").arg(level));
-    levelText->setPos(700, 0);
-    QFont font("Times", 16, QFont::Bold);
-    levelText->setFont(font);
-    levelText->setDefaultTextColor(Qt::red);
-    //scene->addItem(levelText);
-    LLL = levelText;
-    scene->addItem(LLL);
-}
+// QGraphicsTextItem* LLL;
+// void Game::loadLevel(int level) {
+//     QGraphicsTextItem* levelText = new QGraphicsTextItem(QString("Level %1").arg(level));
+//     levelText->setPos(700, 0);
+//     QFont font("Times", 16, QFont::Bold);
+//     levelText->setFont(font);
+//     levelText->setDefaultTextColor(Qt::red);
+//     //scene->addItem(levelText);
+//     LLL = levelText;
+//     scene->addItem(LLL);
+// }
 
-QGraphicsTextItem* LLL;
+    QGraphicsTextItem* LLL;
     void Game::loadLevel(int level) {
         // Clear any existing static obstacles from the scene
         for (StaticObstacle* obstacle : staticObstacles) {
@@ -166,15 +166,12 @@ QGraphicsTextItem* LLL;
         LLL = levelText;
         scene->addItem(LLL);
 
-        // Add static obstacles specific to each level
         if (level == 1) {
-            staticObstacles.append(new StaticObstacle(scene, 400, 500, "C:/Users/AUC/Documents/GitHub/supermario/obstacle1.png"));
-            staticObstacles.append(new StaticObstacle(scene, 700, 450, "C:/Users/AUC/Documents/GitHub/supermario/obstacle2.png"));
+            staticObstacles.append(new StaticObstacle(scene, 400, 600, "C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
+            staticObstacles.append(new StaticObstacle(scene, 700, 450, "C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
         } else if (level == 2) {
-            staticObstacles.append(new StaticObstacle(scene, 300, 550, "C:/Users/AUC/Documents/GitHub/supermario/level2_obstacle.png"));
+            staticObstacles.append(new StaticObstacle(scene, 300, 550, "C:/Users/Dell/OneDrive/Desktop/kindpng_3952566.png"));
         }
-
-        // Update the scene to reflect new elements
         scene->update();
     }
 
