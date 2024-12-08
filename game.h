@@ -13,6 +13,8 @@
 #include "GameLevel.h"
 #include "StaticObstacle.h"
 #include "heart.h"
+#include "Platform.h"
+
 class Game: public QObject {
     Q_OBJECT
 
@@ -36,6 +38,8 @@ private:
     //QGraphicsTextItem* levelText;
     QGraphicsPixmapItem* finishLine;
     QVector<StaticObstacle*> staticObstacles;
+    QList<Platform*> platforms;
+
 public:
     Game(int l, int r, int n);
     int lives;
@@ -54,6 +58,7 @@ public:
     void updateHUD();
     QGraphicsScene* scene;
     void simulateMouseClick();
+    void generateLevelContent();
 
 public slots:
     void updateGame();

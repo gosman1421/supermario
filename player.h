@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QObject>
 #include <QSet>
+#include "Platform.h"
 
 class player : public QObject, public QGraphicsPixmapItem
 {

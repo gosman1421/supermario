@@ -33,7 +33,7 @@ Game::Game(int l, int r, int n) : score(n), currentLevel(r) {
 
 
     // Load the background image
-    QPixmap backgroundPixmap("C:/Users/Dell/OneDrive/Desktop/Scene.png");
+    QPixmap backgroundPixmap("C:/Users/AUC/Documents/GitHub/supermario/pixel-art-sky-background-with-clouds-cloudy-blue-sky-for-8bit-game-on-white-background-vector.jpg");
 
 
     // Scale the background to fit the scene's size
@@ -107,6 +107,38 @@ void Game::simulateMouseClick() {
 
     // Send the mouse release event to the player
     QApplication::sendEvent(mainPlayer, &releaseEvent);
+}
+
+void Game::generateLevelContent() {
+    int platformCount = QRandomGenerator::global()->bounded(5, 10); // Randomize number of platforms
+    int coinCount = QRandomGenerator::global()->bounded(10, 20);   // Randomize number of coins
+
+    // Generate platforms
+    for (int i = 0; i < platformCount; i++) {
+        int width = QRandomGenerator::global()->bounded(100, 300); // Platform width
+        int x = QRandomGenerator::global()->bounded(0, 1800);     // Random X position
+        int y = QRandomGenerator::global()->bounded(200, 500);    // Random Y position
+
+        QGraphicsRectItem *platform = new QGraphicsRectItem(x, y, width, 10); // Simple platform
+        platform->setBrush(Qt::gray); // Set color
+        scene->addItem(platform);
+
+        // Place coins on the platform
+        int coinsOnPlatform = QRandomGenerator::global()->bounded(1, 5); // Coins per platform
+        for (int j = 0; j < coinsOnPlatform; j++) {
+            int coinX = x + QRandomGenerator::global()->bounded(0, width - 30); // Random position on platform
+            coin *newCoin = new coin(scene, scoreManager);
+            newCoin->setPos(coinX, y - 30); // Place coin slightly above platform
+            coins.append(newCoin);
+        }
+    }
+
+    // Add enemies for more challenge
+    for (int i = 0; i < currentLevel; i++) {
+        int enemyX = QRandomGenerator::global()->bounded(100, 1800);
+        Enemy *newEnemy = new Enemy(scene, Enemy::Moving, scoreManager, 10, 560, enemyX, enemyX - 200);
+        enemies.append(newEnemy);
+    }
 }
 
 Game::~Game() {
@@ -270,6 +302,22 @@ void Game::loadLevel(int level) {
     //scene->addItem(levelText);
     LLL = levelText;
     scene->addItem(LLL);
+
+    int platformY = 500; // Adjust Y position of platforms as needed
+    for (int i = 0; i < 2; i++) {
+        int platformX = i * 600 + 200; // Position platforms horizontally
+        Platform* platform = new Platform(scene, platformX, platformY);
+        platforms.append(platform);
+
+        // Add a coin on the platform
+        coin* platformCoin = new coin(scene, scoreManager);
+        platformCoin->setPos(platformX + 50, platformY - 50); // Adjust position relative to platform
+        coins.append(platformCoin);
+    }
+
+    scene->update();
+
+
 }
 
 void Game::startGame(){

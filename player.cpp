@@ -5,9 +5,11 @@
 #include <QDebug>
 #include <QApplication>
 #include <QGraphicsView>
+#include "Platform.h"
+
 player::player(QGraphicsItem* parent, QGraphicsScene *scene1)
     : QGraphicsPixmapItem(parent), score(0), lives(3), coins(0), speed(10), hasTemporaryAbility(false), scene(scene1), isjumping(false) {
-    setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/PngItem_1478513.png"));
+    setPixmap(QPixmap("C:/Users/AUC/Documents/GitHub/supermario/PngItem_1478513.png"));
     setScale(0.1);
     setPos(0, 525);
     setFlag(QGraphicsItem::ItemIsFocusable);
@@ -112,12 +114,23 @@ void player::handleMovement() {
     int y = QGraphicsPixmapItem::y();
 
     if (activeKeys.contains(Qt::Key_Left)) {
-        x -= speed; // Adjust speed as needed
+        x -= speed;
     }
     if (activeKeys.contains(Qt::Key_Right)) {
         x += speed;
     }
+    if (activeKeys.contains(Qt::Key_Up) && !isjumping) {
+        y -= 60; // Jump
+        isjumping = true;
+        QTimer::singleShot(500, this, [this]() {
+            moveDown();
+            isjumping = false;
+        });
+    }
 
-    setPos(x, y); // Update position
+    setPos(x, y);
+
+
     scene->update();
 }
+

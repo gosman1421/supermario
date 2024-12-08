@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     QMediaPlayer* songplayer= new QMediaPlayer;
     QAudioOutput* audio= new QAudioOutput;
     songplayer->setAudioOutput(audio);
-    songplayer->setSource(QUrl::fromLocalFile("C:/Users/AUC/Downloads/01. Ground Theme.mp3"));
+    songplayer->setSource(QUrl::fromLocalFile("C:/Users/AUC/Documents/GitHub/supermario/01. Ground Theme.mp3"));
     audio->setVolume(100);
     songplayer->play();
     welcomewindow welcome;

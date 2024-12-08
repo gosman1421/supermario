@@ -10,7 +10,7 @@
 
 heart::heart(QGraphicsScene *scene, Score *scoreManager)
     : scene(scene), scoreManager(scoreManager) {
-    setPixmap(QPixmap("C:/Users/Dell/OneDrive/Desktop/newheart.png"));
+    setPixmap(QPixmap("C:/Users/AUC/Documents/GitHub/supermario/newheart.png"));
     setScale(0.05);
     scene->addItem(this);
 }
