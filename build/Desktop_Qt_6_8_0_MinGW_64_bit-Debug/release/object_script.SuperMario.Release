@@ -1,4 +1,5 @@
 release/Health.o
+release/Obstacle.o
 release/Platform.o
 release/Score.o
 release/coin.o

@@ -1,4 +1,5 @@
 debug/Health.o
+debug/Obstacle.o
 debug/Platform.o
 debug/Score.o
 debug/coin.o

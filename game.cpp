@@ -303,21 +303,24 @@ void Game::loadLevel(int level) {
     LLL = levelText;
     scene->addItem(LLL);
 
-    int platformY = 500; // Adjust Y position of platforms as needed
-    for (int i = 0; i < 2; i++) {
-        int platformX = i * 600 + 200; // Position platforms horizontally
-        Platform* platform = new Platform(scene, platformX, platformY);
+    int platformY = 500;
+    for (int i = 0; i < 2;i++) {
+        int platformX = i*600 + 200;
+        Platform* platform =new Platform(scene, platformX, platformY);
         platforms.append(platform);
 
         // Add a coin on the platform
-        coin* platformCoin = new coin(scene, scoreManager);
-        platformCoin->setPos(platformX + 50, platformY - 50); // Adjust position relative to platform
+        coin* platformCoin= new coin(scene, scoreManager);
+        platformCoin->setPos(platformX + 50, platformY - 50);
         coins.append(platformCoin);
     }
 
-    scene->update();
-
-
+    int obstacleY = scene->sceneRect().height() - 200;
+    for (int i = 0;i < 3; i++) {
+        int obstacleX = i * 300 + 150;
+        Obstacle* obstacle =new Obstacle(scene, obstacleX, obstacleY);
+        obstacles.append(obstacle);
+    }
 }
 
 void Game::startGame(){

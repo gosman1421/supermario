@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     Health.cpp \
+    Obstacle.cpp \
     Platform.cpp \
     Score.cpp \
     coin.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
 HEADERS += \
     GameLevel.h \
     Health.h \
+    Obstacle.h \
     Platform.h \
     Score.h \
     coin.h \

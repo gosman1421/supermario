@@ -14,6 +14,7 @@
 #include "StaticObstacle.h"
 #include "heart.h"
 #include "Platform.h"
+#include "Obstacle.h"
 
 class Game: public QObject {
     Q_OBJECT
@@ -39,6 +40,7 @@ private:
     QGraphicsPixmapItem* finishLine;
     QVector<StaticObstacle*> staticObstacles;
     QList<Platform*> platforms;
+    QList<Obstacle*> obstacles;
 
 public:
     Game(int l, int r, int n);

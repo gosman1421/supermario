@@ -6,6 +6,7 @@
 #include <QApplication>
 #include <QGraphicsView>
 #include "Platform.h"
+#include "Obstacle.h"
 
 player::player(QGraphicsItem* parent, QGraphicsScene *scene1)
     : QGraphicsPixmapItem(parent), score(0), lives(3), coins(0), speed(10), hasTemporaryAbility(false), scene(scene1), isjumping(false) {
@@ -126,6 +127,17 @@ void player::handleMovement() {
             moveDown();
             isjumping = false;
         });
+    }
+
+    for (QGraphicsItem* item : scene->items()) {
+        Obstacle* obstacle = dynamic_cast<Obstacle*>(item);
+        if (obstacle && collidesWithItem(obstacle)) {
+            // Prevent Mario from passing through the obstacle horizontally
+            if (x + boundingRect().width() > obstacle->x() &&
+                x < obstacle->x() + obstacle->boundingRect().width()) {
+                x = x > obstacle->x() ? obstacle->x() + obstacle->boundingRect().width() : obstacle->x() - boundingRect().width();
+            }
+        }
     }
 
     setPos(x, y);
